@@ -1,0 +1,99 @@
+:root {
+  --color-white: #fff;
+  --color-black: #000;
+  --color-red: #ff002a;
+  --color-gold: #ffa100;
+  --color-purple: #8128ff;
+  --color-green: #62aa2d;
+  --color-wine: #63033e;
+
+  --brand-red-50: #ffdfe4;
+  --brand-red-100: #ffc3cd;
+  --brand-red-200: #ffa7b6;
+  --brand-red-300: #ff8b9e;
+  --brand-red-400: #ff7087;
+  --brand-red-500: #ff002a;
+  --brand-red-600: #ff1c41;
+  --brand-red-700: #ff3859;
+  --brand-red-800: #ff5470;
+  --brand-darkred-300: #df0025;
+  --brand-darkred-400: #bf0020;
+  --brand-darkred-500: #9f001a;
+  --brand-darkred-600: #800015;
+  --brand-darkred-700: #600010;
+  --brand-darkred-800: #40000b;
+  --brand-darkred-900: #200005;
+
+  --brand-gray-900: #131313;
+  --brand-gray-850: #1c1c1c;
+  --brand-gray-800: #383838;
+  --brand-gray-700: #545454;
+  --brand-gray-600: #707070;
+  --brand-gray-500: #8b8b8b;
+  --brand-gray-400: #a7a7a7;
+  --brand-gray-200: #c3c3c3;
+  --brand-gray-100: #dfdfdf;
+
+  --brand-orange: #fb4f05;
+  --brand-amber: #ff9700;
+  --brand-gold: #ffbd00;
+  --brand-yellow: #ffea01;
+  --brand-lime: #cbe426;
+  --brand-green: #62aa2d;
+  --brand-light-blue: #019de3;
+  --brand-blue: #0244fc;
+  --brand-purple: #6a00ff;
+  --brand-magenta: #a400d4;
+
+  --gradient-red-black: linear-gradient(90deg, #ff002a 0%, #000 100%);
+  --gradient-orange-black: linear-gradient(90deg, #fb4f05 0%, #000 100%);
+  --gradient-gold-black: linear-gradient(90deg, #ffbd00 0%, #000 100%);
+  --gradient-lime-black: linear-gradient(90deg, #cbe426 0%, #000 100%);
+  --gradient-blue-black: linear-gradient(90deg, #0244fc 0%, #000 100%);
+  --gradient-purple-black: linear-gradient(90deg, #6a00ff 0%, #000 100%);
+  --gradient-magenta-black: linear-gradient(90deg, #a400d4 0%, #000 100%);
+  --gradient-red-purple: linear-gradient(90deg, #ff002a 0%, #6a00ff 100%);
+  --gradient-multicolor: linear-gradient(
+    90deg,
+    #fff 0%,
+    #ff002a 33%,
+    #6a00ff 66%,
+    #000 100%
+  );
+
+  --background-canvas: #000;
+  --background-sales-deck-image: url("/background/Background.png");
+  --text-primary: #fff;
+  --text-secondary: rgb(255 255 255 / 70%);
+  --surface-card: rgb(255 255 255 / 12%);
+  --surface-glass: rgb(255 255 255 / 12%);
+  --border-subtle: rgb(255 255 255 / 30%);
+  --action-primary: #ff002a;
+  --content-highlight: #ffa100;
+  --status-success: #62aa2d;
+
+  --font-primary: "Code Next", "Avenir Next", "Inter", "Helvetica Neue", Arial, sans-serif;
+
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-48: 48px;
+  --space-64: 64px;
+  --space-80: 80px;
+  --space-96: 96px;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 32px;
+  --radius-pill: 100px;
+
+  --glow-purple: 0 12px 32px rgb(129 40 255 / 38%);
+  --glow-hover: 0 0 22px rgb(255 161 0 / 34%), 0 10px 36px rgb(129 40 255 / 28%);
+  --particle-card-blur: 12px;
+}

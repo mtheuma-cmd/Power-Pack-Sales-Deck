@@ -1,0 +1,91 @@
+.deck-controls {
+  align-items: center;
+  background: rgb(0 0 0 / 78%);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  bottom: 24px;
+  display: flex;
+  gap: 8px;
+  left: 50%;
+  padding: 6px;
+  position: fixed;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.deck-controls button {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  font-size: 18px;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+}
+
+.deck-controls button:hover:not(:disabled),
+.deck-controls button:focus-visible {
+  background: var(--surface-card);
+}
+
+.deck-controls button:disabled {
+  cursor: default;
+  opacity: 0.3;
+}
+
+.deck-controls .deck-controls__text-button {
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 0 14px;
+  width: auto;
+}
+
+.deck-controls .deck-controls__text-button.is-active {
+  background: var(--action-primary);
+}
+
+.deck-controls span {
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 700;
+  min-width: 58px;
+  text-align: center;
+}
+
+.slide-viewport.is-editing [data-editable-text] {
+  border-radius: 4px;
+  cursor: text;
+  outline: 1px dashed transparent;
+  outline-offset: 4px;
+}
+
+.slide-viewport.is-editing [data-editable-text]:hover {
+  outline-color: rgb(255 255 255 / 45%);
+}
+
+.slide-viewport.is-editing [data-editable-text]:focus {
+  background: rgb(129 40 255 / 18%);
+  outline: 2px solid var(--content-highlight);
+}
+
+.slide-viewport.is-editing [data-draggable] {
+  cursor: grab;
+  outline: 1px dashed rgb(255 255 255 / 45%);
+  outline-offset: 4px;
+  pointer-events: auto;
+  touch-action: none;
+  user-select: none;
+}
+
+.slide-viewport.is-editing [data-draggable]:hover,
+.slide-viewport.is-editing [data-draggable].is-dragging {
+  outline: 2px solid var(--content-highlight);
+}
+
+.slide-viewport.is-editing [data-draggable].is-dragging {
+  cursor: grabbing;
+}

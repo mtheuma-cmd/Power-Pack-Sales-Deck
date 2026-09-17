@@ -1,0 +1,352 @@
+@import "./tokens.css";
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background: #111;
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.app-nav {
+  align-items: center;
+  background: rgb(0 0 0 / 88%);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  gap: var(--space-24);
+  height: 64px;
+  justify-content: space-between;
+  padding: 0 var(--space-32);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.app-nav__brand {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.app-nav__links {
+  display: flex;
+  gap: var(--space-8);
+}
+
+.app-nav__link {
+  border-radius: var(--radius-pill);
+  color: var(--text-secondary);
+  padding: 10px 16px;
+}
+
+.app-nav__link:hover,
+.app-nav__link[aria-current="page"] {
+  background: var(--surface-card);
+  color: var(--text-primary);
+}
+
+.slide-stage {
+  align-items: center;
+  background:
+    radial-gradient(circle at 75% 20%, rgb(129 40 255 / 13%), transparent 33%),
+    #111;
+  display: flex;
+  justify-content: center;
+  min-height: calc(100vh - 64px);
+  overflow: hidden;
+  padding: 24px;
+}
+
+.slide-viewport {
+  aspect-ratio: 16 / 9;
+  max-height: calc(100vh - 128px);
+  max-width: calc(100vw - 48px);
+  position: relative;
+  width: 100%;
+}
+
+.slide {
+  background-color: var(--background-canvas);
+  background-image: var(--background-sales-deck-image);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 810px;
+  left: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(var(--slide-scale, 1));
+  transform-origin: center;
+  width: 1440px;
+}
+
+.slide__content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  padding: 104px 80px 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.slide__content .ds-deck-header {
+  left: 80px;
+  position: absolute;
+  right: 80px;
+  top: 32px;
+  z-index: 2;
+}
+
+.slide__chrome {
+  align-items: center;
+  bottom: 32px;
+  display: flex;
+  justify-content: space-between;
+  left: 80px;
+  pointer-events: none;
+  position: absolute;
+  right: 80px;
+  z-index: 2;
+}
+
+.slide__number,
+.slide__back-index {
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.slide__back-index {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  pointer-events: auto;
+  transition:
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.ds-insight,
+.ds-release-card,
+.ds-ranked-row,
+.ds-comparison-table,
+.ds-button,
+.metrics-grid .ds-metric,
+.index-list__row,
+.content-card,
+.process-group li,
+.tool-job,
+.product-media-placeholder,
+.player-details section,
+.prize-type-grid article,
+.config-grid > section,
+.contact-layout__actions > a,
+.contact-layout__action,
+.cover-metric {
+  cursor: default;
+  position: relative;
+  transition:
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.ds-button,
+.contact-layout__actions > a,
+.contact-layout__action,
+.index-list__row--jump,
+.slide__back-index {
+  cursor: pointer;
+}
+
+.ds-insight:hover,
+.ds-release-card:hover,
+.ds-ranked-row:hover,
+.ds-comparison-table:hover,
+.ds-button:hover,
+.metrics-grid .ds-metric:hover,
+.index-list__row:hover,
+.content-card:hover,
+.process-group li:hover,
+.tool-job:hover,
+.product-media-placeholder:hover,
+.player-details section:hover,
+.prize-type-grid article:hover,
+.config-grid > section:hover,
+.contact-layout__actions > a:hover,
+.contact-layout__action:hover,
+.cover-metric:hover,
+.slide__back-index:hover {
+  box-shadow: var(--glow-hover);
+  transform: scale(1.03);
+  z-index: 3;
+}
+
+.ds-insight,
+.ds-release-card,
+.ds-ranked-row,
+.ds-comparison-table,
+.metrics-grid .ds-metric,
+.index-list__row,
+.content-card,
+.process-group li,
+.tool-job,
+.product-media-placeholder,
+.player-details section,
+.prize-type-grid article,
+.config-grid > section,
+.cover-metric {
+  -webkit-backdrop-filter: blur(var(--particle-card-blur));
+  backdrop-filter: blur(var(--particle-card-blur));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-insight,
+  .ds-release-card,
+  .ds-ranked-row,
+  .ds-comparison-table,
+  .ds-button,
+  .metrics-grid .ds-metric,
+  .index-list__row,
+  .content-card,
+  .process-group li,
+  .tool-job,
+  .product-media-placeholder,
+  .player-details section,
+  .prize-type-grid article,
+  .config-grid > section,
+  .contact-layout__actions > a,
+  .contact-layout__action,
+  .cover-metric,
+  .slide__back-index,
+  .ds-insight:hover,
+  .ds-release-card:hover,
+  .ds-ranked-row:hover,
+  .ds-comparison-table:hover,
+  .ds-button:hover,
+  .metrics-grid .ds-metric:hover,
+  .index-list__row:hover,
+  .content-card:hover,
+  .process-group li:hover,
+  .tool-job:hover,
+  .product-media-placeholder:hover,
+  .player-details section:hover,
+  .prize-type-grid article:hover,
+  .config-grid > section:hover,
+  .contact-layout__actions > a:hover,
+  .contact-layout__action:hover,
+  .cover-metric:hover,
+  .slide__back-index:hover {
+    box-shadow: none;
+    transform: none;
+    transition: none;
+  }
+}
+
+.slide__eyebrow {
+  color: var(--content-highlight);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin: 0 0 24px;
+  text-transform: uppercase;
+}
+
+.slide__title {
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 0;
+}
+
+.slide__body {
+  color: var(--text-secondary);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 24px 0 0;
+}
+
+.print-deck {
+  display: none;
+}
+
+@media print {
+  @page {
+    margin: 0;
+    size: 16in 9in;
+  }
+
+  body {
+    background: #000;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .app-nav,
+  .deck-controls,
+  .slide-stage > .slide-viewport {
+    display: none !important;
+  }
+
+  .slide-stage {
+    display: block;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    width: auto;
+  }
+
+  .print-deck {
+    display: block;
+  }
+
+  .print-deck__page {
+    break-after: page;
+    height: 9in;
+    overflow: hidden;
+    page-break-after: always;
+    position: relative;
+    width: 16in;
+  }
+
+  .print-deck__page:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+
+  .print-deck .slide {
+    left: 0;
+    top: 0;
+    transform: scale(1.0666667);
+    transform-origin: top left;
+  }
+}

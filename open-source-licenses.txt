@@ -1,0 +1,38 @@
+Direct npm dependencies
+=======================
+
+react 19.3.0
+License: MIT
+License text: node_modules/react/LICENSE
+
+react-dom 19.3.0
+License: MIT
+License text: node_modules/react-dom/LICENSE
+
+vite 7.3.6
+License: MIT
+License text: node_modules/vite/LICENSE.md
+
+@vitejs/plugin-react 5.2.0
+License: MIT
+License text: node_modules/@vitejs/plugin-react/LICENSE
+
+typescript 5.9.3
+License: Apache-2.0
+License text: node_modules/typescript/LICENSE.txt
+
+tsx 4.23.13
+License: MIT
+License text: node_modules/tsx/LICENSE
+
+@types/node 24.13.4
+License: MIT
+License text: node_modules/@types/node/LICENSE
+
+@types/react 19.3.0
+License: MIT
+License text: node_modules/@types/react/LICENSE
+
+@types/react-dom 19.3.0
+License: MIT
+License text: node_modules/@types/react-dom/LICENSE
