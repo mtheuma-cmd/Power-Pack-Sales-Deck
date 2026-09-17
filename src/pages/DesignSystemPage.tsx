@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import {
   colors,
   effects,
@@ -24,7 +25,58 @@ import {
   Tag,
 } from "../design-system/components";
 import type { BrandBackgroundVariant } from "../design-system/components";
+import { asset } from "../lib/asset";
 import "./design-system-page.css";
+
+const deckLink = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+const toolHovers = [
+  {
+    name: "Flexible Free Spins",
+    glow: "0 0 24px rgb(57 255 20 / 55%), 0 10px 38px rgb(0 220 70 / 42%)",
+    tint: "rgb(57 255 20 / 8%)",
+  },
+  {
+    name: "Grand Race",
+    glow: "0 0 24px rgb(255 0 42 / 58%), 0 10px 38px rgb(255 0 42 / 44%)",
+    tint: "rgb(255 0 42 / 8%)",
+  },
+  {
+    name: "Turbo Races",
+    glow: "0 0 24px rgb(110 210 255 / 58%), 0 10px 38px rgb(50 170 255 / 44%)",
+    tint: "rgb(110 210 255 / 8%)",
+  },
+  {
+    name: "Power Blasts",
+    glow: "0 0 24px rgb(190 120 255 / 58%), 0 10px 38px rgb(129 40 255 / 48%)",
+    tint: "rgb(190 120 255 / 8%)",
+  },
+  {
+    name: "Power Chance",
+    glow: "0 0 24px rgb(70 200 255 / 62%), 0 10px 38px rgb(40 160 255 / 48%)",
+    tint: "rgb(70 200 255 / 8%)",
+  },
+] as const;
+
+const fallingIcons = [
+  ["/promo-assets/Flexi-1000x1000.png", "Flexible Free Spins"],
+  ["/promo-assets/Grand_Race-Icon-1000x1000.png", "Grand Race"],
+  ["/promo-assets/Turbo_Races-Icon-1000x1000.png", "Turbo Races"],
+  ["/promo-assets/Power_Blasts-Icon-1000x1000.png", "Power Blasts"],
+  ["/promo-assets/Win_100x.png", "Power Chance 100×"],
+  ["/promo-assets/Win_200x.png", "Power Chance 200×"],
+  ["/promo-assets/Win_1000x.png", "Power Chance 1000×"],
+] as const;
+
+const overviewLogos = [
+  ["/promo-assets/LOGO-Flexi-Spins.png", "Flexible Free Spins"],
+  ["/promo-assets/LOGO-Grand-race.png", "Grand Race"],
+  ["/promo-assets/LOGO-turbo-races.png", "Turbo Races"],
+  ["/promo-assets/LOGO-power-blasts.png", "Power Blasts"],
+  ["/promo-assets/logo_animated.gif", "Power Chance"],
+] as const;
 
 const brandCore = [
   ["Playson Black", colors.brand.core.black],
@@ -105,6 +157,94 @@ export function DesignSystemPage() {
           Official brand color scales, gradients, artwork, and reusable presentation components.
         </span>
       </section>
+
+      <DocsSection
+        title="Interactive Sales Deck"
+        description="Patterns unique to the Playson Power Pack promo tools deck: the 16:9 player, shared product hover palette, falling icons, overview logos, chrome, local media, and PDF export."
+      >
+        <Showcase title="Live deck">
+          <div className="docs-deck-cta-row">
+            <a className="docs-deck-cta" href={deckLink}>
+              Open Interactive Sales Deck
+            </a>
+            <p>
+              27 slides at 1440 × 810. Arrow keys, fullscreen, hash links such as
+              {" "}
+              <code>#slide=explore</code>
+              , and GitHub Pages hosting.
+            </p>
+          </div>
+        </Showcase>
+        <Showcase title="Index and table hover palette">
+          <div className="docs-tool-glow-grid">
+            {toolHovers.map((tool) => (
+              <article
+                className="docs-tool-glow"
+                key={tool.name}
+                style={{
+                  "--glow-hover": tool.glow,
+                  "--tool-hover-tint": tool.tint,
+                } as CSSProperties}
+              >
+                <strong>{tool.name}</strong>
+                <span>Used by slide 2, slides 6–7 tables, and slide 26 cards</span>
+              </article>
+            ))}
+          </div>
+        </Showcase>
+        <Showcase title="Falling product icons">
+          <div className="docs-fall-grid">
+            {fallingIcons.map(([src, label]) => (
+              <figure className="docs-fall-icon" key={label}>
+                <img src={asset(src)} alt="" />
+                <figcaption>{label}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </Showcase>
+        <Showcase title="Overview logos">
+          <div className="docs-logo-grid">
+            {overviewLogos.map(([src, label]) => (
+              <figure className="docs-overview-logo" key={label}>
+                <img src={asset(src)} alt="" />
+                <figcaption>{label}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </Showcase>
+        <Showcase title="Slide chrome">
+          <div className="docs-chrome-preview">
+            <button className="slide__back-index" type="button">
+              Back to Index
+            </button>
+            <span className="slide__number">14 / 27</span>
+          </div>
+        </Showcase>
+        <Showcase title="Contact actions">
+          <div className="docs-contact-preview">
+            <a className="contact-layout__action" href="https://playson.com/contacts" target="_blank" rel="noopener noreferrer">
+              LET’S HAVE A CHAT
+            </a>
+            <a
+              className="ds-button ds-button--glass contact-layout__download"
+              href={`${asset("playson-power-pack-sales-deck.pdf")}?v=20260917-1541`}
+              download="Playson-Power-Pack-Sales-Deck.pdf"
+            >
+              Download PDF
+            </a>
+          </div>
+        </Showcase>
+        <Showcase title="PDF export treatment">
+          <div className="docs-pdf-rules">
+            <span>Animated entrances</span>
+            <strong>Static final state</strong>
+            <span>Gradient typography</span>
+            <strong>Solid Playson gold</strong>
+            <span>Falling product icons</span>
+            <strong>Fixed visible positions</strong>
+          </div>
+        </Showcase>
+      </DocsSection>
 
       <DocsSection
         title="Brand identity"

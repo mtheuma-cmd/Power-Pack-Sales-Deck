@@ -270,7 +270,74 @@
   padding-right: 24px;
 }
 
+.slide--five-tools .comparison-layout {
+  overflow: visible;
+  padding-bottom: 18px;
+}
+
+.slide--five-tools .ds-comparison-table {
+  overflow: visible;
+}
+
+.slide--five-tools .ds-comparison-table:hover {
+  box-shadow: none;
+  transform: none;
+}
+
+.slide--five-tools .ds-comparison-table tbody tr {
+  position: relative;
+  transition:
+    box-shadow 220ms ease,
+    opacity 220ms ease;
+}
+
+.slide--five-tools .ds-comparison-table tbody:hover tr {
+  opacity: 0.38;
+}
+
+.slide--five-tools .ds-comparison-table tbody tr:nth-child(1) {
+  --glow-hover: 0 0 24px rgb(57 255 20 / 55%), 0 10px 38px rgb(0 220 70 / 42%);
+  background: rgb(57 255 20 / 8%);
+}
+
+.slide--five-tools .ds-comparison-table tbody tr:nth-child(2) {
+  --glow-hover: 0 0 24px rgb(255 0 42 / 58%), 0 10px 38px rgb(255 0 42 / 44%);
+  background: rgb(255 0 42 / 8%);
+}
+
+.slide--five-tools .ds-comparison-table tbody tr:nth-child(3) {
+  --glow-hover: 0 0 24px rgb(110 210 255 / 58%), 0 10px 38px rgb(50 170 255 / 44%);
+  background: rgb(110 210 255 / 8%);
+}
+
+.slide--five-tools .ds-comparison-table tbody tr:nth-child(4) {
+  --glow-hover: 0 0 24px rgb(190 120 255 / 58%), 0 10px 38px rgb(129 40 255 / 48%);
+  background: rgb(190 120 255 / 8%);
+}
+
+.slide--five-tools .ds-comparison-table tbody tr:nth-child(5) {
+  --glow-hover: 0 0 24px rgb(70 200 255 / 62%), 0 10px 38px rgb(40 160 255 / 48%);
+  background: rgb(70 200 255 / 8%);
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.slide--five-tools .ds-comparison-table tbody tr:nth-child(5) td:first-child {
+  border-bottom-left-radius: 12px;
+}
+
+.slide--five-tools .ds-comparison-table tbody tr:nth-child(5) td:last-child {
+  border-bottom-right-radius: 12px;
+}
+
+.slide--five-tools .ds-comparison-table tbody tr:hover {
+  box-shadow: var(--glow-hover);
+  opacity: 1;
+  z-index: 3;
+}
+
 .slide--toolkit-matrix .ds-comparison-table table {
+  overflow: visible;
   table-layout: fixed;
 }
 
@@ -286,10 +353,165 @@
   width: calc((100% - 148px) / 5);
 }
 
+.slide--toolkit-matrix .comparison-layout {
+  overflow: visible;
+  padding-bottom: 18px;
+}
+
+.slide--toolkit-matrix .ds-comparison-table {
+  overflow: visible;
+}
+
+.slide--toolkit-matrix .ds-comparison-table:hover {
+  box-shadow: none;
+  transform: none;
+}
+
+.slide--toolkit-matrix .ds-comparison-table tbody tr:nth-child(odd) {
+  background: transparent;
+}
+
+.slide--toolkit-matrix .ds-comparison-table tbody td:first-of-type {
+  color: inherit;
+  font-weight: 600;
+  -webkit-text-fill-color: inherit;
+}
+
+.slide--toolkit-matrix .ds-comparison-table :is(th, td) {
+  position: relative;
+  transition:
+    box-shadow 220ms ease,
+    opacity 220ms ease;
+}
+
+.slide--toolkit-matrix .ds-comparison-table thead th,
+.slide--toolkit-matrix .ds-comparison-table tbody th {
+  background-image: linear-gradient(90deg, #ffa600, #f4e29b);
+  background-clip: text;
+  color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.slide--toolkit-matrix .ds-comparison-table thead th::before,
+.slide--toolkit-matrix .ds-comparison-table thead th::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+}
+
+.slide--toolkit-matrix .ds-comparison-table thead th::before {
+  inset: 0;
+  z-index: -1;
+}
+
+.slide--toolkit-matrix .ds-comparison-table thead th:nth-child(n+2) {
+  overflow: visible;
+  z-index: 1;
+}
+
+.slide--toolkit-matrix .ds-comparison-table thead th:nth-child(n+2)::after {
+  border-radius: 12px;
+  box-shadow: var(--glow-hover);
+  height: 900%;
+  left: 0;
+  opacity: 0;
+  top: 0;
+  transition: opacity 220ms ease;
+  width: 100%;
+  z-index: -1;
+}
+
+.slide--toolkit-matrix .ds-comparison-table :is(th, td):nth-child(2) {
+  --glow-hover: 0 0 24px rgb(57 255 20 / 55%), 0 10px 38px rgb(0 220 70 / 42%);
+}
+
+.slide--toolkit-matrix .ds-comparison-table td:nth-child(2),
+.slide--toolkit-matrix .ds-comparison-table thead th:nth-child(2)::before {
+  background: rgb(57 255 20 / 8%);
+}
+
+.slide--toolkit-matrix .ds-comparison-table :is(th, td):nth-child(3) {
+  --glow-hover: 0 0 24px rgb(255 0 42 / 58%), 0 10px 38px rgb(255 0 42 / 44%);
+}
+
+.slide--toolkit-matrix .ds-comparison-table td:nth-child(3),
+.slide--toolkit-matrix .ds-comparison-table thead th:nth-child(3)::before {
+  background: rgb(255 0 42 / 8%);
+}
+
+.slide--toolkit-matrix .ds-comparison-table :is(th, td):nth-child(4) {
+  --glow-hover: 0 0 24px rgb(110 210 255 / 58%), 0 10px 38px rgb(50 170 255 / 44%);
+}
+
+.slide--toolkit-matrix .ds-comparison-table td:nth-child(4),
+.slide--toolkit-matrix .ds-comparison-table thead th:nth-child(4)::before {
+  background: rgb(110 210 255 / 8%);
+}
+
+.slide--toolkit-matrix .ds-comparison-table :is(th, td):nth-child(5) {
+  --glow-hover: 0 0 24px rgb(190 120 255 / 58%), 0 10px 38px rgb(129 40 255 / 48%);
+}
+
+.slide--toolkit-matrix .ds-comparison-table td:nth-child(5),
+.slide--toolkit-matrix .ds-comparison-table thead th:nth-child(5)::before {
+  background: rgb(190 120 255 / 8%);
+}
+
+.slide--toolkit-matrix .ds-comparison-table :is(th, td):nth-child(6) {
+  --glow-hover: 0 0 24px rgb(70 200 255 / 62%), 0 10px 38px rgb(40 160 255 / 48%);
+}
+
+.slide--toolkit-matrix .ds-comparison-table td:nth-child(6),
+.slide--toolkit-matrix .ds-comparison-table thead th:nth-child(6)::before {
+  background: rgb(70 200 255 / 8%);
+}
+
+.slide--toolkit-matrix .ds-comparison-table thead th:last-child {
+  border-top-right-radius: 12px;
+}
+
+.slide--toolkit-matrix .ds-comparison-table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 12px;
+}
+
+.slide--toolkit-matrix .ds-comparison-table table:has(:is(th, td):nth-child(2):hover) :is(th, td):nth-child(n+2):not(:nth-child(2)),
+.slide--toolkit-matrix .ds-comparison-table table:has(:is(th, td):nth-child(3):hover) :is(th, td):nth-child(n+2):not(:nth-child(3)),
+.slide--toolkit-matrix .ds-comparison-table table:has(:is(th, td):nth-child(4):hover) :is(th, td):nth-child(n+2):not(:nth-child(4)),
+.slide--toolkit-matrix .ds-comparison-table table:has(:is(th, td):nth-child(5):hover) :is(th, td):nth-child(n+2):not(:nth-child(5)),
+.slide--toolkit-matrix .ds-comparison-table table:has(:is(th, td):nth-child(6):hover) :is(th, td):nth-child(n+2):not(:nth-child(6)) {
+  opacity: 0.38;
+}
+
+.slide--toolkit-matrix .ds-comparison-table table:has(:is(th, td):nth-child(2):hover) thead th:nth-child(2)::after,
+.slide--toolkit-matrix .ds-comparison-table table:has(:is(th, td):nth-child(3):hover) thead th:nth-child(3)::after,
+.slide--toolkit-matrix .ds-comparison-table table:has(:is(th, td):nth-child(4):hover) thead th:nth-child(4)::after,
+.slide--toolkit-matrix .ds-comparison-table table:has(:is(th, td):nth-child(5):hover) thead th:nth-child(5)::after,
+.slide--toolkit-matrix .ds-comparison-table table:has(:is(th, td):nth-child(6):hover) thead th:nth-child(6)::after {
+  opacity: 1;
+}
+
+.slide--toolkit-matrix .ds-comparison-table table:has(:is(th, td):nth-child(2):hover) thead th:nth-child(2),
+.slide--toolkit-matrix .ds-comparison-table table:has(:is(th, td):nth-child(3):hover) thead th:nth-child(3),
+.slide--toolkit-matrix .ds-comparison-table table:has(:is(th, td):nth-child(4):hover) thead th:nth-child(4),
+.slide--toolkit-matrix .ds-comparison-table table:has(:is(th, td):nth-child(5):hover) thead th:nth-child(5),
+.slide--toolkit-matrix .ds-comparison-table table:has(:is(th, td):nth-child(6):hover) thead th:nth-child(6) {
+  z-index: 4;
+}
+
+.slide--toolkit-matrix .ds-comparison-table table:has(:is(th, td):nth-child(2):hover) :is(th, td):nth-child(2),
+.slide--toolkit-matrix .ds-comparison-table table:has(:is(th, td):nth-child(3):hover) :is(th, td):nth-child(3),
+.slide--toolkit-matrix .ds-comparison-table table:has(:is(th, td):nth-child(4):hover) :is(th, td):nth-child(4),
+.slide--toolkit-matrix .ds-comparison-table table:has(:is(th, td):nth-child(5):hover) :is(th, td):nth-child(5),
+.slide--toolkit-matrix .ds-comparison-table table:has(:is(th, td):nth-child(6):hover) :is(th, td):nth-child(6) {
+  opacity: 1;
+}
+
 .index-list {
   display: grid;
   gap: 10px;
   margin-top: 30px;
+  overflow: visible;
 }
 
 .index-list__row {
@@ -306,24 +528,49 @@
   padding: 0 24px;
 }
 
-.index-list__row:nth-child(1) {
+.slide--index .index-list__row:nth-child(1) {
+  --glow-hover: 0 0 24px rgb(57 255 20 / 55%), 0 10px 38px rgb(0 220 70 / 42%);
   animation-delay: 100ms;
 }
 
-.index-list__row:nth-child(2) {
+.slide--index .index-list__row:nth-child(2) {
+  --glow-hover: 0 0 24px rgb(255 0 42 / 58%), 0 10px 38px rgb(255 0 42 / 44%);
   animation-delay: 280ms;
 }
 
-.index-list__row:nth-child(3) {
+.slide--index .index-list__row:nth-child(3) {
+  --glow-hover: 0 0 24px rgb(110 210 255 / 58%), 0 10px 38px rgb(50 170 255 / 44%);
   animation-delay: 460ms;
 }
 
-.index-list__row:nth-child(4) {
+.slide--index .index-list__row:nth-child(4) {
+  --glow-hover: 0 0 24px rgb(190 120 255 / 58%), 0 10px 38px rgb(129 40 255 / 48%);
   animation-delay: 640ms;
 }
 
-.index-list__row:nth-child(5) {
+.slide--index .index-list__row:nth-child(5) {
+  --glow-hover: 0 0 24px rgb(70 200 255 / 62%), 0 10px 38px rgb(40 160 255 / 48%);
   animation-delay: 820ms;
+}
+
+.slide--index .index-list__row:nth-child(1):hover {
+  background: rgb(57 255 20 / 8%);
+}
+
+.slide--index .index-list__row:nth-child(2):hover {
+  background: rgb(255 0 42 / 8%);
+}
+
+.slide--index .index-list__row:nth-child(3):hover {
+  background: rgb(110 210 255 / 8%);
+}
+
+.slide--index .index-list__row:nth-child(4):hover {
+  background: rgb(190 120 255 / 8%);
+}
+
+.slide--index .index-list__row:nth-child(5):hover {
+  background: rgb(70 200 255 / 8%);
 }
 
 @keyframes index-row-enter {
@@ -406,6 +653,26 @@
   padding: 24px;
 }
 
+.slide--proof .content-card:nth-child(1) {
+  --glow-hover: 0 0 24px rgb(57 255 20 / 55%), 0 10px 38px rgb(0 220 70 / 42%);
+}
+
+.slide--proof .content-card:nth-child(2) {
+  --glow-hover: 0 0 24px rgb(255 0 42 / 58%), 0 10px 38px rgb(255 0 42 / 44%);
+}
+
+.slide--proof .content-card:nth-child(3) {
+  --glow-hover: 0 0 24px rgb(110 210 255 / 58%), 0 10px 38px rgb(50 170 255 / 44%);
+}
+
+.slide--proof .content-card:nth-child(4) {
+  --glow-hover: 0 0 24px rgb(190 120 255 / 58%), 0 10px 38px rgb(129 40 255 / 48%);
+}
+
+.slide--proof .content-card:nth-child(5) {
+  --glow-hover: 0 0 24px rgb(70 200 255 / 62%), 0 10px 38px rgb(40 160 255 / 48%);
+}
+
 .content-card--featured {
   align-items: center;
   column-gap: 40px;
@@ -426,6 +693,11 @@
   grid-column: 1;
   grid-row: 2;
   margin: 0;
+}
+
+.content-card--featured:not(:has(.content-card__eyebrow)) h2 {
+  align-self: center;
+  grid-row: 1 / -1;
 }
 
 .content-card--featured p {
@@ -549,10 +821,15 @@
 }
 
 .content-card h2 {
+  background: linear-gradient(90deg, #ffa600, #f4e29b);
+  background-clip: text;
+  color: transparent;
   font-size: 25px;
   line-height: 1.1;
   margin: 14px 0 12px;
   white-space: pre-line;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .content-card--featured h2 {
@@ -805,7 +1082,7 @@
 }
 
 .tool-overview-logo[data-draggable="logo-flexi-spins"] {
-  width: 223px;
+  width: 256px;
 }
 
 .slide--flexible-free-spins-config .prize-type-grid article:hover,
@@ -973,7 +1250,12 @@
 }
 
 .prize-type-grid strong {
+  background: linear-gradient(90deg, #ffa600, #f4e29b);
+  background-clip: text;
+  color: transparent;
   font-size: 24px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .prize-type-grid span {
@@ -1059,7 +1341,7 @@
   gap: 16px;
 }
 
-.contact-layout__actions > a,
+.contact-layout__actions > a:not(.ds-button),
 .contact-layout__action {
   background: var(--action-primary);
   border-radius: var(--radius-pill);

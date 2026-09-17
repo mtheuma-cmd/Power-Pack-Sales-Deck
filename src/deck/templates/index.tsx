@@ -29,14 +29,12 @@ export function SlideTemplate({
   slide,
   meta,
   onGoToSlide,
-  onDownloadPdf,
   slideNumber,
   slideCount,
 }: {
   slide: SlideData;
   meta: DeckMeta;
   onGoToSlide?: (slideNumber: number) => void;
-  onDownloadPdf?: () => void;
   slideNumber?: number;
   slideCount?: number;
 }) {
@@ -71,7 +69,7 @@ export function SlideTemplate({
     case "tool-config":
       return <ToolConfigTemplate slide={slide} meta={meta} />;
     case "contact":
-      return <ContactTemplate slide={slide} meta={meta} onDownloadPdf={onDownloadPdf} />;
+      return <ContactTemplate slide={slide} meta={meta} />;
     case "closing":
       return <ClosingTemplate slide={slide} meta={meta} />;
     }
@@ -170,12 +168,15 @@ function SlideFrame({
 }) {
   const chrome = useContext(SlideChromeContext);
   const showBackIndex = Boolean(chrome.onGoToSlide && chrome.number && chrome.number > 2);
+  const showSlideNumber = Boolean(
+    chrome.number && chrome.total && chrome.number !== 1 && chrome.number !== chrome.total,
+  );
 
   return (
     <div className={`slide ${className}`.trim()}>
       <PlaysonBackground src={chrome.backgroundSrc} />
       {children}
-      {(showBackIndex || Boolean(chrome.number && chrome.total)) && (
+      {(showBackIndex || showSlideNumber) && (
         <div className="slide__chrome">
           {showBackIndex ? (
             <button
@@ -188,7 +189,7 @@ function SlideFrame({
           ) : (
             <span />
           )}
-          {chrome.number && chrome.total && (
+          {showSlideNumber && (
             <span className="slide__number" aria-hidden="true">
               {chrome.number} / {chrome.total}
             </span>
@@ -468,7 +469,7 @@ function CardGridTemplate({
   meta: DeckMeta;
 }) {
   return (
-    <SlideFrame className={`slide--card-grid ${slide.id === "suite-overview" ? "slide--suite-overview" : ""} ${slide.id === "suite-promise" ? "slide--suite-promise" : ""} ${slide.id === "suite-overview" || slide.id === "thirty-days" || slide.id === "proof" ? "slide--card-lead" : ""} ${slide.id === "suite-promise" ? "slide--card-drop" : ""}`}>
+    <SlideFrame className={`slide--card-grid ${slide.id === "suite-overview" ? "slide--suite-overview" : ""} ${slide.id === "suite-promise" ? "slide--suite-promise" : ""} ${slide.id === "proof" ? "slide--proof" : ""} ${slide.id === "suite-overview" || slide.id === "thirty-days" || slide.id === "proof" ? "slide--card-lead" : ""} ${slide.id === "suite-promise" ? "slide--card-drop" : ""}`}>
       <div className="slide__content">
         <Header meta={meta} />
         {slide.eyebrow && <p className="slide__eyebrow">{slide.eyebrow}</p>}
@@ -696,11 +697,9 @@ function ToolConfigTemplate({
 function ContactTemplate({
   slide,
   meta,
-  onDownloadPdf,
 }: {
   slide: Extract<SlideData, { type: "contact" }>;
   meta: DeckMeta;
-  onDownloadPdf?: () => void;
 }) {
   return (
     <SlideFrame className="slide--contact">
@@ -725,11 +724,13 @@ function ContactTemplate({
             ) : (
               <strong className="contact-layout__action">{slide.contact}</strong>
             )}
-            {onDownloadPdf && (
-              <Button className="contact-layout__download" tone="glass" onClick={onDownloadPdf}>
-                Download PDF
-              </Button>
-            )}
+            <a
+              className="ds-button ds-button--glass contact-layout__download"
+              href={`${asset("playson-power-pack-sales-deck.pdf")}?v=20260917-1541`}
+              download="Playson-Power-Pack-Sales-Deck.pdf"
+            >
+              Download PDF
+            </a>
           </div>
         </div>
       </div>

@@ -25,9 +25,14 @@ The sample deck demonstrates the patterns through the `resources`, `roadmap`, `r
 `comparison` structured slide types. Each template accepts plain typed data from a deck file and
 composes the relevant patterns automatically.
 
-The 28-slide Promo Tools deck also uses `index`, `card-grid`, `process`, `tool-overview`,
+The 27-slide Promo Tools deck also uses `index`, `card-grid`, `process`, `tool-overview`,
 `tool-player`, `tool-config`, and `contact` layouts. Five product modules share the same A/B/C
 template sequence so design changes remain consistent across all tools.
+
+The product hover palette is shared across slide 2 index rows, the row/column interactions on
+slides 6–7, and the proof cards on slide 26. PDF exports preserve animated content in a static
+final state and use solid Playson gold for typography that uses gradient clipping in the
+interactive deck.
 
 ## Images
 

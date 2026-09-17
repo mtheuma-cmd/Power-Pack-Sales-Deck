@@ -19,6 +19,10 @@ const editableTextSelector = [
   "button",
 ].join(",");
 
+function isPdfExportRequest() {
+  return new URLSearchParams(window.location.search).has("export-pdf");
+}
+
 function indexFromHash(deck: DeckData) {
   const id = new URLSearchParams(window.location.hash.replace(/^#/, "")).get("slide");
   const index = deck.slides.findIndex((slide) => slide.id === id);
@@ -52,7 +56,7 @@ export function DeckPlayer({ deck }: { deck: DeckData }) {
   const [scale, setScale] = useState(1);
   const [isEditing, setIsEditing] = useState(false);
   const [editRevision, setEditRevision] = useState(0);
-  const [isPreparingPdf, setIsPreparingPdf] = useState(false);
+  const isPdfExport = isPdfExportRequest();
   const viewportRef = useRef<HTMLDivElement>(null);
   const editsRef = useRef(new Map<string, string[]>());
   const positionsRef = useRef(new Map<string, Record<string, { left: number; top: number }>>());
@@ -230,43 +234,11 @@ export function DeckPlayer({ deck }: { deck: DeckData }) {
   }, [deck.slides.length, goTo, index]);
 
   useEffect(() => {
-    if (!isPreparingPdf) return;
+    if (!isPdfExport) return;
 
-    let cancelled = false;
-    const originalTitle = document.title;
-    const finish = () => {
-      document.title = originalTitle;
-      setIsPreparingPdf(false);
-    };
-
-    const printDeck = async () => {
-      await document.fonts.ready;
-      const images = Array.from(document.querySelectorAll<HTMLImageElement>(".print-deck img"));
-      await Promise.all(
-        images.map(async (image) => {
-          if (!image.complete) {
-            await new Promise<void>((resolve) => {
-              image.addEventListener("load", () => resolve(), { once: true });
-              image.addEventListener("error", () => resolve(), { once: true });
-            });
-          }
-          await image.decode().catch(() => undefined);
-        }),
-      );
-      await new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
-
-      if (cancelled) return;
-      document.title = `${deck.meta.title} - Sales Deck`;
-      window.addEventListener("afterprint", finish, { once: true });
-      window.print();
-    };
-
-    void printDeck();
-    return () => {
-      cancelled = true;
-      window.removeEventListener("afterprint", finish);
-    };
-  }, [deck.meta.title, isPreparingPdf]);
+    document.title = `${deck.meta.title} - Sales Deck`;
+    document.documentElement.classList.add("pdf-export");
+  }, [deck.meta.title, isPdfExport]);
 
   const toggleFullscreen = async () => {
     if (document.fullscreenElement) {
@@ -304,7 +276,6 @@ export function DeckPlayer({ deck }: { deck: DeckData }) {
           key={`${current.id}-${editRevision}`}
           slide={current}
           meta={deck.meta}
-          onDownloadPdf={() => setIsPreparingPdf(true)}
           onGoToSlide={
             isEditing
               ? undefined
@@ -314,7 +285,7 @@ export function DeckPlayer({ deck }: { deck: DeckData }) {
           slideCount={deck.slides.length}
         />
       </div>
-      {isPreparingPdf && (
+      {isPdfExport && (
         <div className="print-deck" aria-hidden="true">
           {deck.slides.map((slide, slideIndex) => (
             <div className="print-deck__page" key={slide.id}>

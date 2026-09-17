@@ -21,7 +21,8 @@ and templates compose design-system components and CSS tokens.
   process, product-module, resources, roadmap, ranking, comparison, and contact layouts.
 - `src/deck/DeckPlayer.tsx`: responsive scaling, navigation, URL state, and fullscreen.
 - `src/decks/`: editable structured deck content.
-- `src/pages/`: design-system documentation.
+- `src/pages/`: design-system documentation, including an Interactive Sales Deck
+  section for Power Pack-specific patterns.
 - `src/styles/`: global and token CSS.
 
 ## Design decisions
@@ -31,10 +32,15 @@ and templates compose design-system components and CSS tokens.
   deterministic CSS particle layers; standalone previews use `DeckBackground`.
 - Translucent card surfaces apply localized backdrop blur so particles soften only while passing
   behind a card. Interactive surfaces use the shared gold-and-purple hover glow and 1.03 scale.
+  Product-specific hover colours are shared by the index, toolkit tables, and proof cards.
+- Slide numbers are omitted on the first and last slides.
 - Performance figures and unboxed process numbers use the shared warm-gold text gradient.
 - Deck headers use the approved PLAYSON and GET MORE SVG brand assets.
 - The deck player provides session-only click-to-edit text. Edits stay in memory while navigating
   and are intentionally not written to browser storage or source files.
+- The final-slide Download PDF action serves `public/playson-power-pack-sales-deck.pdf`. Regenerate
+  it with `npm run export-pdf` after visual or copy changes. `?export-pdf=1` renders every slide
+  for that headless print.
 - Deck content remains plain typed data so new decks do not require component changes.
 - `asset()` prefixes public file paths with Vite `BASE_URL` so GitHub Pages project sites load
   images, video, and logos correctly.

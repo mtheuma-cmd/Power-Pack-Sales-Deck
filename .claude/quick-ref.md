@@ -25,15 +25,15 @@ trivy fs --scanners vuln --severity HIGH,CRITICAL --exit-code 1 package-lock.jso
 2. Edit metadata and typed slide content.
 3. Import the deck in `src/App.tsx`.
 4. Open the deck route and use `#slide=<id>` to link to a slide.
-5. Use browser fullscreen to present or print to export a PDF.
+5. Use browser fullscreen to present. After deck changes, run `npm run export-pdf` so the
+   final-slide Download PDF button serves an up-to-date file.
 6. Select **Edit text** in the deck controls to edit visible copy. These edits persist while
    navigating, but reset when the browser reloads; update the deck data for permanent changes.
 
 ## Share
 
 Push to GitHub and let `.github/workflows/pages.yml` publish GitHub Pages. The live deck URL is
-`https://<org>.github.io/<repo>/`. Keep the Pages site private; the Promo Tools narrative is
-INTERNAL.
+`https://mtheuma-cmd.github.io/Power-Pack-Sales-Deck/`.
 
 ## Troubleshooting
 

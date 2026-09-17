@@ -349,4 +349,76 @@ a {
     transform: scale(1.0666667);
     transform-origin: top left;
   }
+
+  .print-deck *,
+  .print-deck *::before,
+  .print-deck *::after {
+    animation-delay: 0s !important;
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition: none !important;
+  }
+
+  .print-deck .slide--cover .cover-layout > h1,
+  .print-deck .slide--cover .cover-layout > p,
+  .print-deck .slide--cover .cover-metric,
+  .print-deck .index-list__row,
+  .print-deck .slide--card-lead .content-card:not(.content-card--featured),
+  .print-deck .slide--card-lead .prize-type-grid article,
+  .print-deck .slide--card-drop .content-card,
+  .print-deck .slide--card-drop .prize-type-grid article,
+  .print-deck .slide--build-process .process-group li,
+  .print-deck .slide--integration .process-group li {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .print-deck .cover-metric > strong,
+  .print-deck .content-card__metric,
+  .print-deck .content-card h2,
+  .print-deck .slide--build-process .process-group li > span,
+  .print-deck .slide--integration .process-group li > span,
+  .print-deck .player-details li > span,
+  .print-deck .prize-type-grid strong,
+  .print-deck .ds-metric__value,
+  .print-deck .ds-ranked-row__rank,
+  .print-deck .ds-ranked-row__metric > strong,
+  .print-deck .ds-comparison-table tbody td:first-of-type,
+  .print-deck .slide--toolkit-matrix .ds-comparison-table thead th,
+  .print-deck .slide--toolkit-matrix .ds-comparison-table tbody th {
+    background: none !important;
+    color: #ffbd00 !important;
+    -webkit-text-fill-color: #ffbd00 !important;
+  }
+
+  .print-deck .blast-fall img {
+    animation: none !important;
+    opacity: 0.2;
+    transform: rotate(var(--blast-rotate));
+  }
+
+  .print-deck .blast-fall img:nth-child(1) {
+    top: 72px;
+  }
+
+  .print-deck .blast-fall img:nth-child(2) {
+    top: 210px;
+  }
+
+  .print-deck .blast-fall img:nth-child(3) {
+    top: 350px;
+  }
+
+  .print-deck .blast-fall img:nth-child(4) {
+    top: 500px;
+  }
+
+  .print-deck .blast-fall img:nth-child(5) {
+    top: 650px;
+  }
+
+  .contact-layout__download {
+    display: none !important;
+  }
 }

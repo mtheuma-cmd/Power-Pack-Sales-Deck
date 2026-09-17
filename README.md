@@ -67,5 +67,6 @@ npm run build
 npm run preview
 ```
 
-Use the browser print dialog from a deck route to create a 16:9 PDF. The original Figma RTF
-source is retained as reference material and is not part of the build.
+The final slide downloads `public/playson-power-pack-sales-deck.pdf`. Refresh that file with
+`npm run export-pdf` after slide or styling changes. The original Figma RTF source is retained as
+reference material and is not part of the build.
