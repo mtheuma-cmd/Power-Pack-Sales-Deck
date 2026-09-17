@@ -306,8 +306,8 @@
 }
 
 .slide--five-tools .ds-comparison-table tbody tr:nth-child(3) {
-  --glow-hover: 0 0 24px rgb(110 210 255 / 58%), 0 10px 38px rgb(50 170 255 / 44%);
-  background: rgb(110 210 255 / 8%);
+  --glow-hover: 0 0 24px rgb(2 68 252 / 58%), 0 10px 38px rgb(2 68 252 / 44%);
+  background: rgb(2 68 252 / 8%);
 }
 
 .slide--five-tools .ds-comparison-table tbody tr:nth-child(4) {
@@ -316,8 +316,8 @@
 }
 
 .slide--five-tools .ds-comparison-table tbody tr:nth-child(5) {
-  --glow-hover: 0 0 24px rgb(70 200 255 / 62%), 0 10px 38px rgb(40 160 255 / 48%);
-  background: rgb(70 200 255 / 8%);
+  --glow-hover: 0 0 24px rgb(1 157 227 / 62%), 0 10px 38px rgb(1 157 227 / 48%);
+  background: rgb(1 157 227 / 8%);
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
 }
@@ -441,12 +441,12 @@
 }
 
 .slide--toolkit-matrix .ds-comparison-table :is(th, td):nth-child(4) {
-  --glow-hover: 0 0 24px rgb(110 210 255 / 58%), 0 10px 38px rgb(50 170 255 / 44%);
+  --glow-hover: 0 0 24px rgb(2 68 252 / 58%), 0 10px 38px rgb(2 68 252 / 44%);
 }
 
 .slide--toolkit-matrix .ds-comparison-table td:nth-child(4),
 .slide--toolkit-matrix .ds-comparison-table thead th:nth-child(4)::before {
-  background: rgb(110 210 255 / 8%);
+  background: rgb(2 68 252 / 8%);
 }
 
 .slide--toolkit-matrix .ds-comparison-table :is(th, td):nth-child(5) {
@@ -459,12 +459,12 @@
 }
 
 .slide--toolkit-matrix .ds-comparison-table :is(th, td):nth-child(6) {
-  --glow-hover: 0 0 24px rgb(70 200 255 / 62%), 0 10px 38px rgb(40 160 255 / 48%);
+  --glow-hover: 0 0 24px rgb(1 157 227 / 62%), 0 10px 38px rgb(1 157 227 / 48%);
 }
 
 .slide--toolkit-matrix .ds-comparison-table td:nth-child(6),
 .slide--toolkit-matrix .ds-comparison-table thead th:nth-child(6)::before {
-  background: rgb(70 200 255 / 8%);
+  background: rgb(1 157 227 / 8%);
 }
 
 .slide--toolkit-matrix .ds-comparison-table thead th:last-child {
@@ -539,7 +539,7 @@
 }
 
 .slide--index .index-list__row:nth-child(3) {
-  --glow-hover: 0 0 24px rgb(110 210 255 / 58%), 0 10px 38px rgb(50 170 255 / 44%);
+  --glow-hover: 0 0 24px rgb(2 68 252 / 58%), 0 10px 38px rgb(2 68 252 / 44%);
   animation-delay: 460ms;
 }
 
@@ -549,7 +549,7 @@
 }
 
 .slide--index .index-list__row:nth-child(5) {
-  --glow-hover: 0 0 24px rgb(70 200 255 / 62%), 0 10px 38px rgb(40 160 255 / 48%);
+  --glow-hover: 0 0 24px rgb(1 157 227 / 62%), 0 10px 38px rgb(1 157 227 / 48%);
   animation-delay: 820ms;
 }
 
@@ -562,7 +562,7 @@
 }
 
 .slide--index .index-list__row:nth-child(3):hover {
-  background: rgb(110 210 255 / 8%);
+  background: rgb(2 68 252 / 8%);
 }
 
 .slide--index .index-list__row:nth-child(4):hover {
@@ -570,7 +570,7 @@
 }
 
 .slide--index .index-list__row:nth-child(5):hover {
-  background: rgb(70 200 255 / 8%);
+  background: rgb(1 157 227 / 8%);
 }
 
 @keyframes index-row-enter {
@@ -653,24 +653,29 @@
   padding: 24px;
 }
 
-.slide--proof .content-card:nth-child(1) {
+.slide--proof .content-card:nth-child(1),
+.slide--suite-overview .content-card:nth-child(1) {
   --glow-hover: 0 0 24px rgb(57 255 20 / 55%), 0 10px 38px rgb(0 220 70 / 42%);
 }
 
-.slide--proof .content-card:nth-child(2) {
+.slide--proof .content-card:nth-child(2),
+.slide--suite-overview .content-card:nth-child(2) {
   --glow-hover: 0 0 24px rgb(255 0 42 / 58%), 0 10px 38px rgb(255 0 42 / 44%);
 }
 
-.slide--proof .content-card:nth-child(3) {
-  --glow-hover: 0 0 24px rgb(110 210 255 / 58%), 0 10px 38px rgb(50 170 255 / 44%);
+.slide--proof .content-card:nth-child(3),
+.slide--suite-overview .content-card:nth-child(3) {
+  --glow-hover: 0 0 24px rgb(2 68 252 / 58%), 0 10px 38px rgb(2 68 252 / 44%);
 }
 
-.slide--proof .content-card:nth-child(4) {
+.slide--proof .content-card:nth-child(4),
+.slide--suite-overview .content-card:nth-child(4) {
   --glow-hover: 0 0 24px rgb(190 120 255 / 58%), 0 10px 38px rgb(129 40 255 / 48%);
 }
 
-.slide--proof .content-card:nth-child(5) {
-  --glow-hover: 0 0 24px rgb(70 200 255 / 62%), 0 10px 38px rgb(40 160 255 / 48%);
+.slide--proof .content-card:nth-child(5),
+.slide--suite-overview .content-card:nth-child(5) {
+  --glow-hover: 0 0 24px rgb(1 157 227 / 62%), 0 10px 38px rgb(1 157 227 / 48%);
 }
 
 .content-card--featured {
@@ -1006,7 +1011,7 @@
 .slide--turbo-races-overview,
 .slide--turbo-races-player,
 .slide--turbo-races-config {
-  --glow-hover: 0 0 24px rgb(110 210 255 / 58%), 0 10px 38px rgb(50 170 255 / 44%);
+  --glow-hover: 0 0 24px rgb(2 68 252 / 58%), 0 10px 38px rgb(2 68 252 / 44%);
 }
 
 .slide--power-blasts-overview,
@@ -1058,7 +1063,7 @@
 .slide--power-chance-overview,
 .slide--power-chance-player,
 .slide--power-chance-config {
-  --glow-hover: 0 0 24px rgb(70 200 255 / 62%), 0 10px 38px rgb(40 160 255 / 48%);
+  --glow-hover: 0 0 24px rgb(1 157 227 / 62%), 0 10px 38px rgb(1 157 227 / 48%);
 }
 
 .slide--power-chance-overview .tool-job,

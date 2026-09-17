@@ -32,7 +32,8 @@ and templates compose design-system components and CSS tokens.
   deterministic CSS particle layers; standalone previews use `DeckBackground`.
 - Translucent card surfaces apply localized backdrop blur so particles soften only while passing
   behind a card. Interactive surfaces use the shared gold-and-purple hover glow and 1.03 scale.
-  Product-specific hover colours are shared by the index, toolkit tables, and proof cards.
+  Product-specific hover colours are shared by the index, suite overview, toolkit tables, and
+  proof cards. Turbo Races uses `#0244FC` and Power Chance uses `#019DE3`.
 - Slide numbers are omitted on the first and last slides.
 - Performance figures and unboxed process numbers use the shared warm-gold text gradient.
 - Deck headers use the approved PLAYSON and GET MORE SVG brand assets.

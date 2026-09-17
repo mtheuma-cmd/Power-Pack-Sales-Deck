@@ -45,8 +45,8 @@ const toolHovers = [
   },
   {
     name: "Turbo Races",
-    glow: "0 0 24px rgb(110 210 255 / 58%), 0 10px 38px rgb(50 170 255 / 44%)",
-    tint: "rgb(110 210 255 / 8%)",
+    glow: "0 0 24px rgb(2 68 252 / 58%), 0 10px 38px rgb(2 68 252 / 44%)",
+    tint: "rgb(2 68 252 / 8%)",
   },
   {
     name: "Power Blasts",
@@ -55,8 +55,8 @@ const toolHovers = [
   },
   {
     name: "Power Chance",
-    glow: "0 0 24px rgb(70 200 255 / 62%), 0 10px 38px rgb(40 160 255 / 48%)",
-    tint: "rgb(70 200 255 / 8%)",
+    glow: "0 0 24px rgb(1 157 227 / 62%), 0 10px 38px rgb(1 157 227 / 48%)",
+    tint: "rgb(1 157 227 / 8%)",
   },
 ] as const;
 
