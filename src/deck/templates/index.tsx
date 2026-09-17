@@ -726,7 +726,7 @@ function ContactTemplate({
             )}
             <a
               className="ds-button ds-button--glass contact-layout__download"
-              href={`${asset("playson-power-pack-sales-deck.pdf")}?v=20260917-1541`}
+              href={`${asset("playson-power-pack-sales-deck.pdf")}?v=20260917-1737`}
               download="Playson-Power-Pack-Sales-Deck.pdf"
             >
               Download PDF

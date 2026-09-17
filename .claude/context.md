@@ -35,7 +35,8 @@ and templates compose design-system components and CSS tokens.
   Product-specific hover colours are shared by the index, suite overview, toolkit tables, and
   proof cards. Turbo Races uses `#0244FC` and Power Chance uses `#019DE3`.
 - Slide numbers are omitted on the first and last slides.
-- Performance figures and unboxed process numbers use the shared warm-gold text gradient.
+- Performance figures, unboxed process numbers, and slide subtitles use the shared warm-gold
+  text gradient. PDF export uses solid Playson gold for those clipped-text styles.
 - Deck headers use the approved PLAYSON and GET MORE SVG brand assets.
 - The deck player provides session-only click-to-edit text. Edits stay in memory while navigating
   and are intentionally not written to browser storage or source files.

@@ -34,22 +34,30 @@
 }
 
 .cover-layout > h1 + p {
-  color: var(--text-secondary);
+  background: linear-gradient(90deg, #ffa600, #f4e29b);
+  background-clip: text;
+  color: transparent;
   font-size: 26px;
   font-weight: 600;
   line-height: 1.4;
   margin: 28px 0 0;
   max-width: 760px;
   text-align: center;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .closing-layout > p {
-  color: var(--text-secondary);
+  background: linear-gradient(90deg, #ffa600, #f4e29b);
+  background-clip: text;
+  color: transparent;
   font-size: 26px;
   font-weight: 600;
   line-height: 1.4;
   margin: 32px 0 0;
   max-width: 720px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .cover-metrics {
@@ -1335,9 +1343,13 @@
 }
 
 .contact-layout > p {
-  color: var(--text-secondary);
+  background: linear-gradient(90deg, #ffa600, #f4e29b);
+  background-clip: text;
+  color: transparent;
   font-size: 24px;
   margin: 26px 0 36px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .contact-layout__actions {

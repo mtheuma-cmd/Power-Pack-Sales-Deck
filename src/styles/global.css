@@ -288,11 +288,15 @@ a {
 }
 
 .slide__body {
-  color: var(--text-secondary);
+  background: linear-gradient(90deg, #ffa600, #f4e29b);
+  background-clip: text;
+  color: transparent;
   font-size: 24px;
   font-weight: 600;
   line-height: 1.4;
   margin: 24px 0 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .print-deck {
@@ -374,6 +378,10 @@ a {
     transform: none !important;
   }
 
+  .print-deck .slide__body,
+  .print-deck .cover-layout > h1 + p,
+  .print-deck .contact-layout > p,
+  .print-deck .closing-layout > p,
   .print-deck .cover-metric > strong,
   .print-deck .content-card__metric,
   .print-deck .content-card h2,
