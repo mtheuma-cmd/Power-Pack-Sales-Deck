@@ -609,6 +609,7 @@ function ToolPlayerTemplate({
                 loop
                 playsInline
                 controls
+                preload="auto"
               />
             ) : (
               <>
