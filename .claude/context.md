@@ -34,7 +34,8 @@ and templates compose design-system components and CSS tokens.
   behind a card. Interactive surfaces use the shared gold-and-purple hover glow and 1.03 scale.
   Product-specific hover colours are shared by the index, suite overview, toolkit tables, and
   proof cards. Turbo Races uses `#0244FC` and Power Chance uses `#019DE3`.
-- Slide numbers are omitted on the first and last slides.
+- Slide numbers are omitted on the first and last slides. Back to Index scales on hover
+  without the product glow.
 - Performance figures, unboxed process numbers, and slide subtitles use the shared warm-gold
   text gradient. PDF export uses solid Playson gold for those clipped-text styles.
 - Deck headers use the approved PLAYSON and GET MORE SVG brand assets.

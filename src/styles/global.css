@@ -149,9 +149,7 @@ a {
   border: 0;
   padding: 0;
   pointer-events: auto;
-  transition:
-    box-shadow 220ms ease,
-    transform 220ms ease;
+  transition: transform 220ms ease;
 }
 
 .ds-insight,
@@ -202,11 +200,14 @@ a {
 .config-grid > section:hover,
 .contact-layout__actions > a:hover,
 .contact-layout__action:hover,
-.cover-metric:hover,
-.slide__back-index:hover {
+.cover-metric:hover {
   box-shadow: var(--glow-hover);
   transform: scale(1.03);
   z-index: 3;
+}
+
+.slide__back-index:hover {
+  transform: scale(1.03);
 }
 
 .ds-insight,
