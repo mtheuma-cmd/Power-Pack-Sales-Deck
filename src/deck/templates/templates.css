@@ -1004,28 +1004,47 @@
   margin: 10px 0 0;
 }
 
+.slide--tool .tool-jump-link {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: var(--tool-link-underline, rgb(57 255 20));
+  text-underline-offset: 3px;
+}
+
+.slide--tool .tool-jump-link:hover,
+.slide--tool .tool-jump-link:focus-visible {
+  box-shadow: none;
+  filter: none;
+  transform: none;
+}
+
 .slide--flexible-free-spins-overview,
 .slide--flexible-free-spins-player,
 .slide--flexible-free-spins-config {
   --glow-hover: 0 0 24px rgb(57 255 20 / 55%), 0 10px 38px rgb(0 220 70 / 42%);
+  --tool-link-underline: rgb(57 255 20);
 }
 
 .slide--grand-race-overview,
 .slide--grand-race-player,
 .slide--grand-race-config {
   --glow-hover: 0 0 24px rgb(255 0 42 / 58%), 0 10px 38px rgb(255 0 42 / 44%);
+  --tool-link-underline: rgb(255 0 42);
 }
 
 .slide--turbo-races-overview,
 .slide--turbo-races-player,
 .slide--turbo-races-config {
   --glow-hover: 0 0 24px rgb(2 68 252 / 58%), 0 10px 38px rgb(2 68 252 / 44%);
+  --tool-link-underline: rgb(2 68 252);
 }
 
 .slide--power-blasts-overview,
 .slide--power-blasts-player,
 .slide--power-blasts-config {
   --glow-hover: 0 0 24px rgb(190 120 255 / 58%), 0 10px 38px rgb(129 40 255 / 48%);
+  --tool-link-underline: rgb(129 40 255);
 }
 
 .blast-fall {
@@ -1072,6 +1091,7 @@
 .slide--power-chance-player,
 .slide--power-chance-config {
   --glow-hover: 0 0 24px rgb(1 157 227 / 62%), 0 10px 38px rgb(1 157 227 / 48%);
+  --tool-link-underline: rgb(1 157 227);
 }
 
 .slide--power-chance-overview .tool-job,

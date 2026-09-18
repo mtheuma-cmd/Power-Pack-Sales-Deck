@@ -526,6 +526,47 @@ function ProcessTemplate({
   );
 }
 
+const toolJumpLinks: Record<string, { slideId: string; slideNumber: number }> = {
+  "Flexible Free Spins": { slideId: "flexible-free-spins-overview", slideNumber: 10 },
+  "Grand Race": { slideId: "grand-race-overview", slideNumber: 13 },
+  "Turbo Races": { slideId: "turbo-races-overview", slideNumber: 16 },
+  "Power Blasts": { slideId: "power-blasts-overview", slideNumber: 19 },
+  "Power Chance": { slideId: "power-chance-overview", slideNumber: 22 },
+};
+
+function ToolAvoidWhenCopy({
+  text,
+  onGoToSlide,
+}: {
+  text: string;
+  onGoToSlide?: (slideNumber: number) => void;
+}) {
+  return (
+    <>
+      {text.split(/(Flexible Free Spins|Power Blasts|Turbo Races|Grand Race|Power Chance)/g).map((part, index) => {
+        const target = toolJumpLinks[part];
+        if (!target) return part;
+
+        return (
+          <a
+            className="tool-jump-link"
+            data-slide-jump=""
+            href={`#slide=${target.slideId}`}
+            key={`${part}-${index}`}
+            onClick={(event) => {
+              if (!onGoToSlide) return;
+              event.preventDefault();
+              onGoToSlide(target.slideNumber);
+            }}
+          >
+            {part}
+          </a>
+        );
+      })}
+    </>
+  );
+}
+
 function ToolOverviewTemplate({
   slide,
   meta,
@@ -533,6 +574,8 @@ function ToolOverviewTemplate({
   slide: Extract<SlideData, { type: "tool-overview" }>;
   meta: DeckMeta;
 }) {
+  const chrome = useContext(SlideChromeContext);
+
   return (
     <SlideFrame className={`slide--tool slide--${slide.id}`}>
       {slide.id === "flexible-free-spins-overview" && <FlexiFallingIcons />}
@@ -570,7 +613,9 @@ function ToolOverviewTemplate({
           </section>
           <section>
             <span>Explore other tools for</span>
-            <p>{slide.avoidWhen}</p>
+            <p>
+              <ToolAvoidWhenCopy text={slide.avoidWhen} onGoToSlide={chrome.onGoToSlide} />
+            </p>
           </section>
         </div>
         {slide.proof && (

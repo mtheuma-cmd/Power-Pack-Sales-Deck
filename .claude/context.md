@@ -36,6 +36,8 @@ and templates compose design-system components and CSS tokens.
   proof cards. Turbo Races uses `#0244FC` and Power Chance uses `#019DE3`.
 - Slide numbers are omitted on the first and last slides. Back to Index scales on hover
   without the product glow.
+- Tool overview “Explore other tools for” copy links named products to their overview slides
+  (10, 13, 16, 19, 22) with a product-coloured underline and no hover glow.
 - Performance figures, unboxed process numbers, and slide subtitles use the shared warm-gold
   text gradient. PDF export uses solid Playson gold for those clipped-text styles.
 - Deck headers use the approved PLAYSON and GET MORE SVG brand assets.
