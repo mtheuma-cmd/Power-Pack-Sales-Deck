@@ -287,7 +287,7 @@ const promoToolsDeck: DeckData = {
         { title: "Grand Race", body: "Turn a longer campaign into visible leaderboard progress players can return to chase." },
         { title: "Turbo Races", body: "Create short, recurring competitions built around fast prize cycles and prime-time play." },
         { title: "Power Blasts", body: "Drop instant, stake-linked rewards into the game without interrupting the session." },
-        { title: "Complete the experience\nwith Power Chance", body: "Add one progressive jackpot and three fixed jackpot tiers inside\nselected Power Chance titles.", featured: true },
+        { title: "Complete the experience\nwith Power Chance", body: "Add one progressive jackpot and three fixed jackpot tiers inside selected Power Chance titles.", featured: true },
       ],
     },
     {

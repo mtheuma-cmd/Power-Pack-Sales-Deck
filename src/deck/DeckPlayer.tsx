@@ -1,8 +1,11 @@
-import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
 import { slide as slideSize } from "../design-system/tokens";
 import type { DeckData } from "./schema";
 import { SlideTemplate } from "./templates";
 import "./deck-player.css";
+
+const mobileSlideSize = { width: 390, height: 844 };
+const mobileMediaQuery = "(max-width: 700px)";
 
 const editableTextSelector = [
   "h1",
@@ -57,6 +60,9 @@ export function DeckPlayer({ deck }: { deck: DeckData }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editRevision, setEditRevision] = useState(0);
   const isPdfExport = isPdfExportRequest();
+  const [isMobile, setIsMobile] = useState(
+    () => !isPdfExport && window.matchMedia(mobileMediaQuery).matches,
+  );
   const viewportRef = useRef<HTMLDivElement>(null);
   const editsRef = useRef(new Map<string, string[]>());
   const positionsRef = useRef(new Map<string, Record<string, { left: number; top: number }>>());
@@ -80,19 +86,79 @@ export function DeckPlayer({ deck }: { deck: DeckData }) {
   }, [deck]);
 
   useEffect(() => {
+    if (isPdfExport) {
+      setIsMobile(false);
+      return;
+    }
+
+    const query = window.matchMedia(mobileMediaQuery);
+    const updateMobile = () => setIsMobile(query.matches);
+    query.addEventListener("change", updateMobile);
+    updateMobile();
+    return () => query.removeEventListener("change", updateMobile);
+  }, [isPdfExport]);
+
+  useEffect(() => {
     const viewport = viewportRef.current;
     if (!viewport) return;
 
     const updateScale = () => {
       const rect = viewport.getBoundingClientRect();
-      setScale(Math.min(rect.width / slideSize.width, rect.height / slideSize.height));
+      const dimensions = isMobile ? mobileSlideSize : slideSize;
+      setScale(Math.min(rect.width / dimensions.width, rect.height / dimensions.height));
     };
 
     const observer = new ResizeObserver(updateScale);
     observer.observe(viewport);
     updateScale();
     return () => observer.disconnect();
-  }, []);
+  }, [isMobile]);
+
+  useLayoutEffect(() => {
+    const viewport = viewportRef.current;
+    const content = viewport?.querySelector<HTMLElement>(".slide__content");
+    if (!viewport || !content) return;
+
+    const clearFit = () => {
+      content.style.removeProperty("--mobile-content-fit");
+      content.style.removeProperty("--mobile-content-width");
+      content.style.removeProperty("--mobile-content-height");
+    };
+
+    clearFit();
+    if (!isMobile) return;
+
+    let frame = 0;
+    const fitContent = () => {
+      clearFit();
+
+      frame = window.requestAnimationFrame(() => {
+        const widthRatio = mobileSlideSize.width / Math.max(content.scrollWidth, mobileSlideSize.width);
+        const heightRatio = mobileSlideSize.height / Math.max(content.scrollHeight, mobileSlideSize.height);
+        const fit = Math.min(1, widthRatio, heightRatio);
+
+        if (fit >= 0.995) return;
+
+        content.style.setProperty("--mobile-content-fit", fit.toFixed(4));
+        content.style.setProperty("--mobile-content-width", `${mobileSlideSize.width / fit}px`);
+        content.style.setProperty("--mobile-content-height", `${mobileSlideSize.height / fit}px`);
+      });
+    };
+
+    fitContent();
+    void document.fonts.ready.then(fitContent);
+
+    const images = Array.from(content.querySelectorAll("img"));
+    images.forEach((image) => {
+      if (!image.complete) image.addEventListener("load", fitContent, { once: true });
+    });
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      images.forEach((image) => image.removeEventListener("load", fitContent));
+      clearFit();
+    };
+  }, [current, editRevision, isMobile]);
 
   useEffect(() => {
     if (!current) return;
@@ -265,9 +331,12 @@ export function DeckPlayer({ deck }: { deck: DeckData }) {
   };
 
   return (
-    <main className="slide-stage" aria-label={`${deck.meta.title} presentation`}>
+    <main
+      className={`slide-stage ${isMobile ? "is-mobile" : ""}`}
+      aria-label={`${deck.meta.title} presentation`}
+    >
       <div
-        className={`slide-viewport ${isEditing ? "is-editing" : ""}`}
+        className={`slide-viewport ${isEditing ? "is-editing" : ""} ${isMobile ? "is-mobile" : ""}`}
         ref={viewportRef}
         onInput={saveCurrentEdits}
         style={{ "--slide-scale": scale } as CSSProperties}

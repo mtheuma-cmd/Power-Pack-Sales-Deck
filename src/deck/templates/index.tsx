@@ -1,4 +1,5 @@
-import { createContext, useContext, type CSSProperties, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, type CSSProperties, type ReactNode } from "react";
+import { promoToolsDeckData } from "../../decks/promo-tools-deck";
 import {
   Button,
   ChartLegend,
@@ -382,23 +383,256 @@ function ComparisonTemplate({
   slide: Extract<SlideData, { type: "comparison" }>;
   meta: DeckMeta;
 }) {
+  const hasDedicatedMobileLayout = slide.id === "five-tools" || slide.id === "toolkit-matrix";
+  const [openTool, setOpenTool] = useState<number | null>(null);
+
   return (
-    <SlideFrame className={`slide--comparison ${slide.id === "toolkit-matrix" ? "slide--toolkit-matrix" : ""} ${slide.id === "five-tools" ? "slide--five-tools" : ""}`}>
+    <SlideFrame className={`slide--comparison ${slide.id === "toolkit-matrix" ? "slide--toolkit-matrix" : ""} ${slide.id === "five-tools" ? "slide--five-tools" : ""} ${openTool !== null ? "slide--tool-detail-open" : ""}`}>
       <div className="slide__content">
         <Header meta={meta} />
         {slide.eyebrow && <p className="slide__eyebrow">{slide.eyebrow}</p>}
         <h1 className="slide__title">{slide.title}</h1>
         {slide.body && <p className="slide__body">{slide.body}</p>}
         <div
-          className={`comparison-layout ${
+          className={`comparison-layout ${hasDedicatedMobileLayout ? "comparison-layout--desktop" : ""} ${
             slide.legend.length === 0 ? "comparison-layout--table-only" : ""
           }`}
         >
           <ComparisonTable columns={slide.columns} rows={slide.rows} />
           {slide.legend.length > 0 && <ChartLegend items={slide.legend} />}
         </div>
+        {slide.id === "five-tools" && <MobileToolCards slide={slide} onOpen={setOpenTool} />}
+        {slide.id === "toolkit-matrix" && <MobileToolkitCompare slide={slide} />}
       </div>
+      {slide.id === "five-tools" && openTool !== null && (
+        <MobileToolDetail
+          job={slide.rows[openTool]}
+          toolIndex={openTool}
+          onClose={() => setOpenTool(null)}
+        />
+      )}
     </SlideFrame>
+  );
+}
+
+const mobileToolClasses = [
+  "flexible-free-spins",
+  "grand-race",
+  "turbo-races",
+  "power-blasts",
+  "power-chance",
+];
+
+const toolkitMatrixSlide = promoToolsDeckData.slides.find(
+  (item): item is Extract<SlideData, { type: "comparison" }> =>
+    item.id === "toolkit-matrix" && item.type === "comparison",
+);
+
+function MobileToolCards({
+  slide,
+  onOpen,
+}: {
+  slide: Extract<SlideData, { type: "comparison" }>;
+  onOpen: (index: number) => void;
+}) {
+  return (
+    <div className="mobile-tool-cards">
+      {slide.rows.map((row, index) => (
+        <button
+          className={`mobile-tool-card mobile-tool-card--${mobileToolClasses[index]}`}
+          key={row.label}
+          type="button"
+          onClick={() => onOpen(index)}
+        >
+          <div className="mobile-tool-card__copy">
+            <strong>{row.values[0]}</strong>
+            <span>{row.label}</span>
+            <p>{row.values[1]}</p>
+          </div>
+          <span className="mobile-tool-card__arrow" aria-hidden="true">›</span>
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function specIcon(label: string) {
+  const icons: Record<string, ReactNode> = {
+    Format: (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M8 4h8l3 5-7 11L5 9l3-5z" />
+        <path d="M8 9h8" />
+      </svg>
+    ),
+    Duration: (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="13" r="8" />
+        <path d="M12 9v4l3 2M9 3h6" />
+      </svg>
+    ),
+    "Player trigger": (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="8" r="3.5" />
+        <path d="M5 20c1.4-4 4-6 7-6s5.6 2 7 6" />
+      </svg>
+    ),
+    Rewards: (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 10h16v9H4zM7 10V7a2 2 0 0 1 2-2c1.6 0 3 2 3 2s1.4-2 3-2a2 2 0 0 1 2 2v3" />
+      </svg>
+    ),
+    Scheduling: (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="4" y="5" width="16" height="15" rx="2" />
+        <path d="M8 3v4M16 3v4M4 10h16" />
+      </svg>
+    ),
+    Controls: (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M5 7h14M5 12h14M5 17h14" />
+        <circle cx="9" cy="7" r="1.6" />
+        <circle cx="15" cy="12" r="1.6" />
+        <circle cx="11" cy="17" r="1.6" />
+      </svg>
+    ),
+    "Best for": (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="8" />
+        <circle cx="12" cy="12" r="3" />
+      </svg>
+    ),
+    Availability: (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="4" y="6" width="16" height="12" rx="2" />
+        <path d="M4 10h16M8 18v2M16 18v2" />
+      </svg>
+    ),
+  };
+
+  return icons[label] ?? icons.Format;
+}
+
+function MobileToolDetail({
+  job,
+  toolIndex,
+  onClose,
+}: {
+  job: { label: string; values: Array<string | number> };
+  toolIndex: number;
+  onClose: () => void;
+}) {
+  const toolClass = mobileToolClasses[toolIndex];
+  const toolName = String(job.values[0]);
+  const specs = toolkitMatrixSlide?.rows.map((row) => ({
+    label: row.label,
+    value: String(row.values[toolIndex] ?? ""),
+  })) ?? [];
+  const format = specs.find((row) => row.label === "Format")?.value ?? "";
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        event.stopPropagation();
+        onClose();
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown, true);
+    return () => window.removeEventListener("keydown", onKeyDown, true);
+  }, [onClose]);
+
+  return (
+    <div
+      className={`mobile-tool-detail mobile-tool-detail--${toolClass}`}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="mobile-tool-detail-title"
+    >
+      <button className="mobile-tool-detail__back" type="button" onClick={onClose}>
+        ← Back to all tools
+      </button>
+      <p className="mobile-tool-detail__name" id="mobile-tool-detail-title">{toolName}</p>
+      {format && <p className="mobile-tool-detail__format">{format}</p>}
+      <p className="mobile-tool-detail__why">{job.values[1]}</p>
+      <div className="mobile-tool-detail__specs">
+        {specs.map((spec) => (
+          <div className="mobile-tool-detail__row" key={spec.label}>
+            <span className="mobile-tool-detail__icon">{specIcon(spec.label)}</span>
+            <strong>{spec.label}</strong>
+            <span>{spec.value}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function MobileToolkitCompare({
+  slide,
+}: {
+  slide: Extract<SlideData, { type: "comparison" }>;
+}) {
+  const [leftTool, setLeftTool] = useState(0);
+  const [rightTool, setRightTool] = useState(1);
+
+  const chooseLeftTool = (nextTool: number) => {
+    if (nextTool === rightTool) setRightTool(leftTool);
+    setLeftTool(nextTool);
+  };
+
+  const chooseRightTool = (nextTool: number) => {
+    if (nextTool === leftTool) setLeftTool(rightTool);
+    setRightTool(nextTool);
+  };
+
+  return (
+    <div className="mobile-tool-compare">
+      <p className="mobile-tool-compare__prompt">Select two tools to compare their key differences.</p>
+      <div className="mobile-tool-compare__selectors">
+        <label>
+          <span className="sr-only">First promotional tool</span>
+          <select
+            value={leftTool}
+            onChange={(event) => chooseLeftTool(Number(event.target.value))}
+          >
+            {slide.columns.map((column, index) => (
+              <option value={index} key={column}>{column}</option>
+            ))}
+          </select>
+        </label>
+        <span aria-hidden="true">vs</span>
+        <label>
+          <span className="sr-only">Second promotional tool</span>
+          <select
+            value={rightTool}
+            onChange={(event) => chooseRightTool(Number(event.target.value))}
+          >
+            {slide.columns.map((column, index) => (
+              <option value={index} key={column}>{column}</option>
+            ))}
+          </select>
+        </label>
+      </div>
+      <div
+        className={`mobile-tool-compare__grid mobile-tool-compare__grid--${mobileToolClasses[leftTool]}-${mobileToolClasses[rightTool]}`}
+      >
+        <div className="mobile-tool-compare__corner" />
+        <strong className={`mobile-tool-compare__tool mobile-tool-compare__tool--${mobileToolClasses[leftTool]}`}>
+          {slide.columns[leftTool]}
+        </strong>
+        <strong className={`mobile-tool-compare__tool mobile-tool-compare__tool--${mobileToolClasses[rightTool]}`}>
+          {slide.columns[rightTool]}
+        </strong>
+        {slide.rows.map((row) => (
+          <div className="mobile-tool-compare__row" key={row.label}>
+            <strong>{row.label}</strong>
+            <span>{row.values[leftTool]}</span>
+            <span>{row.values[rightTool]}</span>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -583,24 +817,24 @@ function ToolOverviewTemplate({
       {slide.id === "turbo-races-overview" && <TurboRacesFallingIcons />}
       {slide.id === "grand-race-overview" && <GrandRaceFallingIcons />}
       {slide.id === "power-chance-overview" && <PowerChanceFallingIcons />}
-      {slide.id === "flexible-free-spins-overview" && (
-        <ToolOverviewLogo id="logo-flexi-spins" src="/promo-assets/LOGO-Flexi-Spins.png" />
-      )}
-      {slide.id === "grand-race-overview" && (
-        <ToolOverviewLogo id="logo-grand-race" src="/promo-assets/LOGO-Grand-race.png" />
-      )}
-      {slide.id === "turbo-races-overview" && (
-        <ToolOverviewLogo id="logo-turbo-races" src="/promo-assets/LOGO-turbo-races.png" />
-      )}
-      {slide.id === "power-blasts-overview" && (
-        <ToolOverviewLogo id="logo-power-blasts" src="/promo-assets/LOGO-power-blasts.png" />
-      )}
-      {slide.id === "power-chance-overview" && (
-        <img className="tool-overview-logo" src={asset("/promo-assets/logo_animated.gif")} alt="" data-draggable="pc-logo-animated" />
-      )}
       <div className="slide__content">
         <Header meta={meta} />
         <h1 className="slide__title">{slide.title}</h1>
+        {slide.id === "flexible-free-spins-overview" && (
+          <ToolOverviewLogo id="logo-flexi-spins" src="/promo-assets/LOGO-Flexi-Spins.png" />
+        )}
+        {slide.id === "grand-race-overview" && (
+          <ToolOverviewLogo id="logo-grand-race" src="/promo-assets/LOGO-Grand-race.png" />
+        )}
+        {slide.id === "turbo-races-overview" && (
+          <ToolOverviewLogo id="logo-turbo-races" src="/promo-assets/LOGO-turbo-races.png" />
+        )}
+        {slide.id === "power-blasts-overview" && (
+          <ToolOverviewLogo id="logo-power-blasts" src="/promo-assets/LOGO-power-blasts.png" />
+        )}
+        {slide.id === "power-chance-overview" && (
+          <img className="tool-overview-logo" src={asset("/promo-assets/logo_animated.gif")} alt="" data-draggable="pc-logo-animated" />
+        )}
         {slide.subtitle && <p className="slide__body">{slide.subtitle}</p>}
         <section className="tool-job">
           <span>Concept</span>

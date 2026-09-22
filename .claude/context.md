@@ -27,7 +27,10 @@ and templates compose design-system components and CSS tokens.
 
 ## Design decisions
 
-- Slides use fixed 1440×810 coordinates and scale as a single unit for deterministic layouts.
+- Desktop slides use fixed 1440×810 coordinates. Viewports up to 700px switch to a 390×844
+  portrait canvas. Oversized slides auto-fit instead of scrolling. Slide 6 uses tappable tool
+  cards with full-column detail overlays; slide 7 uses a two-tool selector. Overview slides
+  center product logos under the title. Desktop and PDF keep the original tables and composition.
 - Every slide renders `<PlaysonBackground />` using `background/Background.png` and three
   deterministic CSS particle layers; standalone previews use `DeckBackground`.
 - Translucent card surfaces apply localized backdrop blur so particles soften only while passing

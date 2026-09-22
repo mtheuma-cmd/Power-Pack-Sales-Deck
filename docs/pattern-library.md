@@ -34,6 +34,14 @@ slides 6–7, and the proof cards on slide 26. PDF exports preserve animated con
 final state and use solid Playson gold for typography that uses gradient clipping in the
 interactive deck.
 
+## Mobile deck patterns
+
+Viewports up to 700px use a 390×844 portrait canvas. Content that exceeds the canvas is fitted
+automatically so slides do not require vertical scrolling. Slide 6 uses tappable tool cards with
+full-column detail overlays, while slide 7 uses a two-tool selector and compact comparison grid.
+Product overview slides center the relevant logo beneath the title, and mobile card groups enter
+sequentially. Desktop and PDF layouts retain the 1440×810 composition.
+
 ## Images
 
 Image-based patterns accept an optional `imageSrc` and `imageAlt`. When no image is supplied, the

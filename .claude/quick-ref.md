@@ -29,6 +29,9 @@ trivy fs --scanners vuln --severity HIGH,CRITICAL --exit-code 1 package-lock.jso
    final-slide Download PDF button serves an up-to-date file.
 6. Select **Edit text** in the deck controls to edit visible copy. These edits persist while
    navigating, but reset when the browser reloads; update the deck data for permanent changes.
+7. Check responsive slides at 390×844. Mobile slides auto-fit to the portrait canvas. Slide 6 uses
+   stacked tool cards with a tap-to-open detail overlay; slide 7 compares two tools at a time.
+   The breakpoint is 700px.
 
 ## Share
 

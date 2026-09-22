@@ -89,3 +89,25 @@
 .slide-viewport.is-editing [data-draggable].is-dragging {
   cursor: grabbing;
 }
+
+@media screen and (max-width: 700px) {
+  .deck-controls {
+    bottom: 8px;
+    gap: 4px;
+    padding: 4px;
+  }
+
+  .deck-controls button {
+    height: 38px;
+    width: 38px;
+  }
+
+  .deck-controls span {
+    font-size: 12px;
+    min-width: 52px;
+  }
+
+  .deck-controls .deck-controls__text-button {
+    display: none;
+  }
+}

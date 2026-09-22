@@ -78,6 +78,21 @@ const overviewLogos = [
   ["/promo-assets/logo_animated.gif", "Power Chance"],
 ] as const;
 
+const mobileDeckPreviews = [
+  ["Tool cards + detail", "five-tools"],
+  ["Two-tool comparison", "toolkit-matrix"],
+  ["Tool overview", "flexible-free-spins-overview"],
+] as const;
+
+const mobileDeckRules = [
+  ["Breakpoint", "≤ 700px"],
+  ["Portrait canvas", "390 × 844"],
+  ["Content behaviour", "Auto-fit without vertical scrolling"],
+  ["Tables", "Dedicated cards and two-tool comparison"],
+  ["Tool cards", "Sequential entrance animation"],
+  ["Desktop and PDF", "Original 1440 × 810 composition"],
+] as const;
+
 const brandCore = [
   ["Playson Black", colors.brand.core.black],
   ["Playson Red", colors.brand.core.red],
@@ -160,7 +175,7 @@ export function DesignSystemPage() {
 
       <DocsSection
         title="Interactive Sales Deck"
-        description="Patterns unique to the Playson Power Pack promo tools deck: the 16:9 player, shared product hover palette, falling icons, overview logos, chrome, local media, and PDF export."
+        description="Patterns unique to the Playson Power Pack promo tools deck: desktop and mobile canvases, dedicated portrait layouts, shared product styling, motion, chrome, local media, and PDF export."
       >
         <Showcase title="Live deck">
           <div className="docs-deck-cta-row">
@@ -168,11 +183,40 @@ export function DesignSystemPage() {
               Open Interactive Sales Deck
             </a>
             <p>
-              27 slides at 1440 × 810. Arrow keys, fullscreen, hash links such as
+              27 slides with a 1440 × 810 desktop canvas and responsive 390 × 844 mobile canvas.
+              Arrow keys, touch controls, fullscreen, hash links such as
               {" "}
               <code>#slide=explore</code>
               , and GitHub Pages hosting.
             </p>
+          </div>
+        </Showcase>
+        <Showcase title="Mobile deck layouts">
+          <div className="docs-mobile-preview-grid">
+            {mobileDeckPreviews.map(([label, slideId]) => (
+              <figure className="docs-mobile-preview" key={slideId}>
+                <div className="docs-mobile-preview__device">
+                  <div className="docs-mobile-preview__screen">
+                    <iframe
+                      src={`${deckLink}#slide=${slideId}`}
+                      title={`${label} mobile deck preview`}
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+                <figcaption>{label}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </Showcase>
+        <Showcase title="Mobile layout rules">
+          <div className="docs-mobile-rules">
+            {mobileDeckRules.map(([label, value]) => (
+              <div key={label}>
+                <span>{label}</span>
+                <strong>{value}</strong>
+              </div>
+            ))}
           </div>
         </Showcase>
         <Showcase title="Index and table hover palette">

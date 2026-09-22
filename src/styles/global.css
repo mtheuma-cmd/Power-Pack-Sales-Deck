@@ -300,6 +300,102 @@ a {
   -webkit-text-fill-color: transparent;
 }
 
+@media screen and (max-width: 700px) {
+  .app-nav {
+    display: none;
+  }
+
+  .slide-stage.is-mobile {
+    align-items: center;
+    min-height: 100dvh;
+    padding: 8px;
+  }
+
+  .slide-viewport.is-mobile {
+    aspect-ratio: 390 / 844;
+    height: calc(100dvh - 76px);
+    max-height: none;
+    max-width: calc(100vw - 16px);
+    width: min(calc(100vw - 16px), calc((100dvh - 76px) * 390 / 844));
+  }
+
+  .slide-viewport.is-mobile .slide {
+    height: 844px;
+    width: 390px;
+  }
+
+  .slide-viewport.is-mobile .slide__content {
+    height: var(--mobile-content-height, 844px);
+    justify-content: flex-start;
+    overflow: hidden;
+    padding: 76px 20px 64px;
+    transform: scale(var(--mobile-content-fit, 1));
+    transform-origin: top left;
+    width: var(--mobile-content-width, 390px);
+  }
+
+  .slide-viewport.is-mobile .slide__content > *,
+  .slide-viewport.is-mobile .slide__content :is(div, section, article) {
+    min-width: 0;
+  }
+
+  .slide-viewport.is-mobile .slide__content :is(h1, h2, h3, p, strong, span, a, li) {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .slide-viewport.is-mobile .slide__content .ds-deck-header {
+    left: 20px;
+    right: 20px;
+    top: 12px;
+  }
+
+  .slide-viewport.is-mobile .ds-deck-header {
+    height: 48px;
+  }
+
+  .slide-viewport.is-mobile .ds-deck-header__brand {
+    height: 22px;
+  }
+
+  .slide-viewport.is-mobile .ds-deck-header__context {
+    display: none;
+  }
+
+  .slide-viewport.is-mobile .ds-deck-header__action {
+    height: 13px;
+  }
+
+  .slide-viewport.is-mobile .slide__title {
+    font-size: 34px;
+    letter-spacing: -0.025em;
+    line-height: 1.02;
+    width: 100%;
+  }
+
+  .slide-viewport.is-mobile .slide__body {
+    font-size: 17px;
+    line-height: 1.35;
+    margin-top: 14px;
+  }
+
+  .slide-viewport.is-mobile .slide__eyebrow {
+    font-size: 12px;
+    margin-bottom: 14px;
+  }
+
+  .slide-viewport.is-mobile .slide__chrome {
+    bottom: 18px;
+    left: 20px;
+    right: 20px;
+  }
+
+  .slide-viewport.is-mobile .slide__number,
+  .slide-viewport.is-mobile .slide__back-index {
+    font-size: 11px;
+  }
+}
+
 .print-deck {
   display: none;
 }

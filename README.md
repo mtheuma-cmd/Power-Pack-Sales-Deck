@@ -38,7 +38,9 @@ Available templates:
 - `closing`
 
 Each slide needs a unique `id`. The deck player supports arrow keys, Page Up/Down, Space,
-Home/End, fullscreen, and direct links such as `/#slide=performance`.
+Home/End, fullscreen, and direct links such as `/#slide=performance`. Desktop slides use a
+1440×810 canvas; screens up to 700px use a 390×844 portrait layout with touch controls, stacked
+content, dedicated mobile comparison layouts, and automatic fitting without vertical scrolling.
 
 ## Share a hosted link
 
