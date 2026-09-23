@@ -47,7 +47,7 @@ curl -fsS "http://127.0.0.1:${port}/" >/dev/null
   --hide-scrollbars \
   --no-pdf-header-footer \
   --virtual-time-budget=120000 \
-  --window-size=390,844 \
+  --window-size=390,693 \
   --print-to-pdf="$mobile_out" \
   "${base_url}?export-pdf=mobile"
 

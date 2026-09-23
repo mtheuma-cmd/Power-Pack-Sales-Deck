@@ -36,12 +36,12 @@ clipping in the interactive deck.
 
 ## Mobile deck patterns
 
-Viewports up to 700px use a 390×844 portrait canvas. Content that exceeds the canvas is fitted
+Viewports up to 700px use an exact 9:16 portrait canvas (390×693.333). Content that exceeds the canvas is fitted
 automatically so slides do not require vertical scrolling. Slide 6 uses tappable tool cards with
 full-column detail overlays, while slide 7 uses the full horizontally scrollable matrix with
 product-coloured columns and filters for hiding columns. Product overview slides center the
 relevant logo beneath the title, and mobile card groups enter sequentially. The desktop PDF keeps
-the 1440×810 composition; the mobile PDF exports the static 390×844 portrait layouts.
+the 1440×810 composition; the mobile PDF exports the static 9:16 portrait layouts.
 
 ## Images
 

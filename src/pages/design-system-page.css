@@ -588,7 +588,7 @@
 .docs-mobile-preview__screen {
   background: #000;
   border-radius: 21px;
-  height: 473px;
+  height: 388px;
   overflow: hidden;
   position: relative;
   width: 218px;
@@ -596,7 +596,7 @@
 
 .docs-mobile-preview iframe {
   border: 0;
-  height: 844px;
+  height: 693.333px;
   left: 0;
   position: absolute;
   top: 0;

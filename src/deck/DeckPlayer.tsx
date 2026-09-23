@@ -4,7 +4,7 @@ import type { DeckData } from "./schema";
 import { SlideTemplate } from "./templates";
 import "./deck-player.css";
 
-const mobileSlideSize = { width: 390, height: 844 };
+const mobileSlideSize = { width: 390, height: 693.333 };
 const mobileMediaQuery = "(max-width: 700px)";
 
 const editableTextSelector = [
@@ -51,7 +51,7 @@ function editableTextElements(viewport: HTMLDivElement | null) {
       (node) => node.nodeType === Node.TEXT_NODE && node.textContent?.trim(),
     );
     return hasDirectText || (element.childElementCount === 0 && element.textContent?.trim());
-  }).filter((element) => !element.closest("[data-slide-jump]"));
+  }).filter((element) => !element.closest("[data-slide-jump], .contact-layout__download, .pdf-choice"));
 
   return candidates.filter(
     (element) => !candidates.some((parent) => parent !== element && parent.contains(element)),

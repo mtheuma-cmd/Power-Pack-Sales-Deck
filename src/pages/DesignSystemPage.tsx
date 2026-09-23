@@ -86,7 +86,7 @@ const mobileDeckPreviews = [
 
 const mobileDeckRules = [
   ["Breakpoint", "≤ 700px"],
-  ["Portrait canvas", "390 × 844"],
+  ["Portrait canvas", "390 × 693.333 (9:16)"],
   ["Content behaviour", "Auto-fit without vertical scrolling"],
   ["Tables", "Product-coloured columns with visibility filters"],
   ["Tool cards", "Sequential entrance animation"],
@@ -183,7 +183,7 @@ export function DesignSystemPage() {
               Open Interactive Sales Deck
             </a>
             <p>
-              27 slides with a 1440 × 810 desktop canvas and responsive 390 × 844 mobile canvas.
+              27 slides with a 1440 × 810 desktop canvas and responsive 9:16 mobile canvas.
               Arrow keys, touch controls, fullscreen, hash links such as
               {" "}
               <code>#slide=explore</code>
@@ -271,14 +271,14 @@ export function DesignSystemPage() {
             </a>
             <a
               className="ds-button ds-button--glass contact-layout__download"
-              href={`${asset("playson-power-pack-sales-deck.pdf")}?v=20260923-1606`}
+              href={`${asset("playson-power-pack-sales-deck.pdf")}?v=20260923-1636`}
               download="Playson-Power-Pack-Sales-Deck-Desktop.pdf"
             >
               Desktop PDF
             </a>
             <a
               className="ds-button ds-button--glass contact-layout__download"
-              href={`${asset("playson-power-pack-sales-deck-mobile.pdf")}?v=20260923-1606`}
+              href={`${asset("playson-power-pack-sales-deck-mobile.pdf")}?v=20260923-1636`}
               download="Playson-Power-Pack-Sales-Deck-Mobile.pdf"
             >
               Mobile PDF
@@ -296,7 +296,7 @@ export function DesignSystemPage() {
             <span>Desktop PDF</span>
             <strong>16:9 landscape</strong>
             <span>Mobile PDF</span>
-            <strong>390 × 844 portrait</strong>
+            <strong>9:16 portrait</strong>
           </div>
         </Showcase>
       </DocsSection>

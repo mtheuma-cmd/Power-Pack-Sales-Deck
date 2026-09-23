@@ -27,8 +27,8 @@ and templates compose design-system components and CSS tokens.
 
 ## Design decisions
 
-- Desktop slides use fixed 1440×810 coordinates. Viewports up to 700px switch to a 390×844
-  portrait canvas. Oversized slides auto-fit instead of scrolling. Slide 6 uses tappable tool
+- Desktop slides use fixed 1440×810 coordinates. Viewports up to 700px switch to an exact 9:16
+  portrait canvas (390×693.333). Oversized slides auto-fit instead of scrolling. Slide 6 uses tappable tool
   cards with full-column detail overlays; slide 7 uses the full horizontally scrollable matrix
   with product-coloured columns and filters for hiding columns. Overview slides center product
   logos under the title. Desktop and PDF keep the original tables and composition.
@@ -48,10 +48,11 @@ and templates compose design-system components and CSS tokens.
 - The deck player provides session-only click-to-edit text. Edits stay in memory while navigating
   and are intentionally not written to browser storage or source files.
 - The final-slide Download PDF action opens a format chooser for the landscape desktop PDF and
-  portrait mobile PDF. `npm run export-pdf` regenerates both
+  portrait mobile PDF. The chooser is portaled to `document.body` so the scaled slide canvas
+  cannot clip it. `npm run export-pdf` regenerates both
   `public/playson-power-pack-sales-deck.pdf` and
   `public/playson-power-pack-sales-deck-mobile.pdf`. `?export-pdf=desktop` renders the 16:9 deck;
-  `?export-pdf=mobile` renders static 390×844 mobile slides.
+  `?export-pdf=mobile` renders static 9:16 mobile slides.
 - Deck content remains plain typed data so new decks do not require component changes.
 - `asset()` prefixes public file paths with Vite `BASE_URL` so GitHub Pages project sites load
   images, video, and logos correctly.

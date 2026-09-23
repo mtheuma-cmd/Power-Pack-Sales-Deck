@@ -1417,8 +1417,8 @@
   display: flex;
   inset: 0;
   justify-content: center;
-  position: absolute;
-  z-index: 20;
+  position: fixed;
+  z-index: 80;
   -webkit-backdrop-filter: blur(18px);
 }
 
@@ -2483,17 +2483,17 @@
     width: 100%;
   }
 
-  .slide-viewport.is-mobile .pdf-choice {
+  .pdf-choice {
     padding: 20px;
   }
 
-  .slide-viewport.is-mobile .pdf-choice__dialog {
+  .pdf-choice__dialog {
     border-radius: 18px;
     padding: 30px 18px 20px;
-    width: 100%;
+    width: min(100%, 390px);
   }
 
-  .slide-viewport.is-mobile .pdf-choice__close {
+  .pdf-choice__close {
     font-size: 22px;
     height: 32px;
     right: 12px;
@@ -2501,32 +2501,32 @@
     width: 32px;
   }
 
-  .slide-viewport.is-mobile .pdf-choice__dialog h2 {
+  .pdf-choice__dialog h2 {
     font-size: 28px;
   }
 
-  .slide-viewport.is-mobile .pdf-choice__dialog > p {
+  .pdf-choice__dialog > p {
     font-size: 12px;
     margin-bottom: 16px;
   }
 
-  .slide-viewport.is-mobile .pdf-choice__options {
+  .pdf-choice__options {
     gap: 10px;
     grid-template-columns: 1fr;
   }
 
-  .slide-viewport.is-mobile .pdf-choice__options a {
+  .pdf-choice__options a {
     align-items: flex-start;
     min-height: 0;
     padding: 14px 16px;
   }
 
-  .slide-viewport.is-mobile .pdf-choice__options a > strong {
+  .pdf-choice__options a > strong {
     font-size: 17px;
     margin-top: 6px;
   }
 
-  .slide-viewport.is-mobile .pdf-choice__options a > small {
+  .pdf-choice__options a > small {
     font-size: 11px;
     margin-top: 3px;
   }

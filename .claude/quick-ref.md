@@ -29,7 +29,7 @@ trivy fs --scanners vuln --severity HIGH,CRITICAL --exit-code 1 package-lock.jso
    final-slide format chooser serves current desktop and mobile PDF files.
 6. Select **Edit text** in the deck controls to edit visible copy. These edits persist while
    navigating, but reset when the browser reloads; update the deck data for permanent changes.
-7. Check responsive slides at 390×844. Mobile slides auto-fit to the portrait canvas. Slide 6 uses
+7. Check responsive slides at 390×693.333 (9:16). Mobile slides auto-fit to the portrait canvas. Slide 6 uses
    stacked tool cards with a tap-to-open detail overlay; slide 7 shows the full horizontally
    scrollable matrix with filters for hiding columns. The breakpoint is 700px.
 
