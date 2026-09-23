@@ -573,64 +573,102 @@ function MobileToolkitCompare({
 }: {
   slide: Extract<SlideData, { type: "comparison" }>;
 }) {
-  const [leftTool, setLeftTool] = useState(0);
-  const [rightTool, setRightTool] = useState(1);
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [visibleTools, setVisibleTools] = useState(() =>
+    slide.columns.map((_, index) => index),
+  );
 
-  const chooseLeftTool = (nextTool: number) => {
-    if (nextTool === rightTool) setRightTool(leftTool);
-    setLeftTool(nextTool);
-  };
+  const toggleTool = (toolIndex: number) => {
+    setVisibleTools((current) => {
+      if (current.includes(toolIndex)) {
+        return current.length === 1
+          ? current
+          : current.filter((index) => index !== toolIndex);
+      }
 
-  const chooseRightTool = (nextTool: number) => {
-    if (nextTool === leftTool) setLeftTool(rightTool);
-    setRightTool(nextTool);
+      return [...current, toolIndex].sort((left, right) => left - right);
+    });
   };
 
   return (
-    <div className="mobile-tool-compare">
-      <p className="mobile-tool-compare__prompt">Select two tools to compare their key differences.</p>
-      <div className="mobile-tool-compare__selectors">
-        <label>
-          <span className="sr-only">First promotional tool</span>
-          <select
-            value={leftTool}
-            onChange={(event) => chooseLeftTool(Number(event.target.value))}
-          >
-            {slide.columns.map((column, index) => (
-              <option value={index} key={column}>{column}</option>
-            ))}
-          </select>
-        </label>
-        <span aria-hidden="true">vs</span>
-        <label>
-          <span className="sr-only">Second promotional tool</span>
-          <select
-            value={rightTool}
-            onChange={(event) => chooseRightTool(Number(event.target.value))}
-          >
-            {slide.columns.map((column, index) => (
-              <option value={index} key={column}>{column}</option>
-            ))}
-          </select>
-        </label>
+    <div className="mobile-tool-matrix">
+      <div className="mobile-tool-matrix__toolbar">
+        <p>Swipe to compare every tool, or hide columns you do not need.</p>
+        <button
+          type="button"
+          aria-expanded={filtersOpen}
+          aria-controls="mobile-tool-filters"
+          onClick={() => setFiltersOpen((open) => !open)}
+        >
+          Filters <span>{visibleTools.length}</span>
+        </button>
       </div>
-      <div
-        className={`mobile-tool-compare__grid mobile-tool-compare__grid--${mobileToolClasses[leftTool]}-${mobileToolClasses[rightTool]}`}
-      >
-        <div className="mobile-tool-compare__corner" />
-        <strong className={`mobile-tool-compare__tool mobile-tool-compare__tool--${mobileToolClasses[leftTool]}`}>
-          {slide.columns[leftTool]}
-        </strong>
-        <strong className={`mobile-tool-compare__tool mobile-tool-compare__tool--${mobileToolClasses[rightTool]}`}>
-          {slide.columns[rightTool]}
-        </strong>
-        {slide.rows.map((row) => (
-          <div className="mobile-tool-compare__row" key={row.label}>
-            <strong>{row.label}</strong>
-            <span>{row.values[leftTool]}</span>
-            <span>{row.values[rightTool]}</span>
+      {filtersOpen && (
+        <div className="mobile-tool-matrix__filters" id="mobile-tool-filters">
+          <div>
+            <strong>Visible columns</strong>
+            <button
+              type="button"
+              onClick={() => setVisibleTools(slide.columns.map((_, index) => index))}
+            >
+              Show all
+            </button>
           </div>
-        ))}
+          {slide.columns.map((column, index) => {
+            const checked = visibleTools.includes(index);
+            return (
+              <label key={column}>
+                <input
+                  type="checkbox"
+                  checked={checked}
+                  disabled={checked && visibleTools.length === 1}
+                  onChange={() => toggleTool(index)}
+                />
+                <span className={`mobile-tool-matrix__filter-dot mobile-tool-matrix__filter-dot--${mobileToolClasses[index]}`} />
+                <span>{column}</span>
+              </label>
+            );
+          })}
+        </div>
+      )}
+      <div
+        className="mobile-tool-matrix__scroll"
+        role="region"
+        aria-label="Scrollable promotional toolkit comparison"
+        tabIndex={0}
+      >
+        <table>
+          <caption className="sr-only">Promotional toolkit comparison</caption>
+          <thead>
+            <tr>
+              <th scope="col">Feature</th>
+              {visibleTools.map((toolIndex) => (
+                <th
+                  className={`mobile-tool-matrix__product mobile-tool-matrix__product--${mobileToolClasses[toolIndex]}`}
+                  scope="col"
+                  key={slide.columns[toolIndex]}
+                >
+                  {slide.columns[toolIndex]}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {slide.rows.map((row) => (
+              <tr key={row.label}>
+                <th scope="row">{row.label}</th>
+                {visibleTools.map((toolIndex) => (
+                  <td
+                    className={`mobile-tool-matrix__product mobile-tool-matrix__product--${mobileToolClasses[toolIndex]}`}
+                    key={`${row.label}-${slide.columns[toolIndex]}`}
+                  >
+                    {row.values[toolIndex]}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
@@ -980,6 +1018,19 @@ function ContactTemplate({
   slide: Extract<SlideData, { type: "contact" }>;
   meta: DeckMeta;
 }) {
+  const [pdfChooserOpen, setPdfChooserOpen] = useState(false);
+
+  useEffect(() => {
+    if (!pdfChooserOpen) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setPdfChooserOpen(false);
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [pdfChooserOpen]);
+
   return (
     <SlideFrame className="slide--contact">
       <div className="slide__content">
@@ -1003,16 +1054,63 @@ function ContactTemplate({
             ) : (
               <strong className="contact-layout__action">{slide.contact}</strong>
             )}
-            <a
+            <button
               className="ds-button ds-button--glass contact-layout__download"
-              href={`${asset("playson-power-pack-sales-deck.pdf")}?v=20260917-1737`}
-              download="Playson-Power-Pack-Sales-Deck.pdf"
+              type="button"
+              aria-haspopup="dialog"
+              onClick={() => setPdfChooserOpen(true)}
             >
               Download PDF
-            </a>
+            </button>
           </div>
         </div>
       </div>
+      {pdfChooserOpen && (
+        <div
+          className="pdf-choice"
+          role="presentation"
+          onClick={(event) => {
+            if (event.currentTarget === event.target) setPdfChooserOpen(false);
+          }}
+        >
+          <section
+            className="pdf-choice__dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="pdf-choice-title"
+          >
+            <button
+              className="pdf-choice__close"
+              type="button"
+              aria-label="Close PDF download options"
+              onClick={() => setPdfChooserOpen(false)}
+            >
+              ×
+            </button>
+            <span className="pdf-choice__eyebrow">Download PDF</span>
+            <h2 id="pdf-choice-title">Choose your format</h2>
+            <p>Select the version designed for the screen you will present or share on.</p>
+            <div className="pdf-choice__options">
+              <a
+                href={`${asset("playson-power-pack-sales-deck.pdf")}?v=20260923-1606`}
+                download="Playson-Power-Pack-Sales-Deck-Desktop.pdf"
+              >
+                <span>16:9</span>
+                <strong>Desktop PDF</strong>
+                <small>Landscape presentation</small>
+              </a>
+              <a
+                href={`${asset("playson-power-pack-sales-deck-mobile.pdf")}?v=20260923-1606`}
+                download="Playson-Power-Pack-Sales-Deck-Mobile.pdf"
+              >
+                <span>9:19</span>
+                <strong>Mobile PDF</strong>
+                <small>Portrait presentation</small>
+              </a>
+            </div>
+          </section>
+        </div>
+      )}
     </SlideFrame>
   );
 }

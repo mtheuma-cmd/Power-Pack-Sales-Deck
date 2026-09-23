@@ -22,8 +22,12 @@ const editableTextSelector = [
   "button",
 ].join(",");
 
-function isPdfExportRequest() {
-  return new URLSearchParams(window.location.search).has("export-pdf");
+type PdfExportFormat = "desktop" | "mobile";
+
+function pdfExportFormat(): PdfExportFormat | null {
+  const value = new URLSearchParams(window.location.search).get("export-pdf");
+  if (value === null) return null;
+  return value === "mobile" ? "mobile" : "desktop";
 }
 
 function indexFromHash(deck: DeckData) {
@@ -59,9 +63,11 @@ export function DeckPlayer({ deck }: { deck: DeckData }) {
   const [scale, setScale] = useState(1);
   const [isEditing, setIsEditing] = useState(false);
   const [editRevision, setEditRevision] = useState(0);
-  const isPdfExport = isPdfExportRequest();
+  const pdfFormat = pdfExportFormat();
+  const isPdfExport = pdfFormat !== null;
+  const isMobilePdfExport = pdfFormat === "mobile";
   const [isMobile, setIsMobile] = useState(
-    () => !isPdfExport && window.matchMedia(mobileMediaQuery).matches,
+    () => isMobilePdfExport || (!isPdfExport && window.matchMedia(mobileMediaQuery).matches),
   );
   const viewportRef = useRef<HTMLDivElement>(null);
   const editsRef = useRef(new Map<string, string[]>());
@@ -86,6 +92,11 @@ export function DeckPlayer({ deck }: { deck: DeckData }) {
   }, [deck]);
 
   useEffect(() => {
+    if (isMobilePdfExport) {
+      setIsMobile(true);
+      return;
+    }
+
     if (isPdfExport) {
       setIsMobile(false);
       return;
@@ -96,7 +107,7 @@ export function DeckPlayer({ deck }: { deck: DeckData }) {
     query.addEventListener("change", updateMobile);
     updateMobile();
     return () => query.removeEventListener("change", updateMobile);
-  }, [isPdfExport]);
+  }, [isMobilePdfExport, isPdfExport]);
 
   useEffect(() => {
     const viewport = viewportRef.current;
@@ -159,6 +170,51 @@ export function DeckPlayer({ deck }: { deck: DeckData }) {
       clearFit();
     };
   }, [current, editRevision, isMobile]);
+
+  useLayoutEffect(() => {
+    if (!isMobilePdfExport) return;
+
+    const contents = Array.from(
+      document.querySelectorAll<HTMLElement>(".print-deck--mobile .slide__content"),
+    );
+    let frame = 0;
+
+    const clearFit = (content: HTMLElement) => {
+      content.style.removeProperty("--mobile-content-fit");
+      content.style.removeProperty("--mobile-content-width");
+      content.style.removeProperty("--mobile-content-height");
+    };
+
+    const fitAllPages = () => {
+      contents.forEach(clearFit);
+      frame = window.requestAnimationFrame(() => {
+        contents.forEach((content) => {
+          const widthRatio = mobileSlideSize.width / Math.max(content.scrollWidth, mobileSlideSize.width);
+          const heightRatio = mobileSlideSize.height / Math.max(content.scrollHeight, mobileSlideSize.height);
+          const fit = Math.min(1, widthRatio, heightRatio);
+          if (fit >= 0.995) return;
+
+          content.style.setProperty("--mobile-content-fit", fit.toFixed(4));
+          content.style.setProperty("--mobile-content-width", `${mobileSlideSize.width / fit}px`);
+          content.style.setProperty("--mobile-content-height", `${mobileSlideSize.height / fit}px`);
+        });
+      });
+    };
+
+    fitAllPages();
+    void document.fonts.ready.then(fitAllPages);
+
+    const images = contents.flatMap((content) => Array.from(content.querySelectorAll("img")));
+    images.forEach((image) => {
+      if (!image.complete) image.addEventListener("load", fitAllPages, { once: true });
+    });
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      images.forEach((image) => image.removeEventListener("load", fitAllPages));
+      contents.forEach(clearFit);
+    };
+  }, [deck.slides.length, isMobilePdfExport]);
 
   useEffect(() => {
     if (!current) return;
@@ -304,7 +360,12 @@ export function DeckPlayer({ deck }: { deck: DeckData }) {
 
     document.title = `${deck.meta.title} - Sales Deck`;
     document.documentElement.classList.add("pdf-export");
-  }, [deck.meta.title, isPdfExport]);
+    document.documentElement.classList.toggle("pdf-export-mobile", isMobilePdfExport);
+
+    return () => {
+      document.documentElement.classList.remove("pdf-export", "pdf-export-mobile");
+    };
+  }, [deck.meta.title, isMobilePdfExport, isPdfExport]);
 
   const toggleFullscreen = async () => {
     if (document.fullscreenElement) {
@@ -355,15 +416,29 @@ export function DeckPlayer({ deck }: { deck: DeckData }) {
         />
       </div>
       {isPdfExport && (
-        <div className="print-deck" aria-hidden="true">
+        <div
+          className={`print-deck ${isMobilePdfExport ? "print-deck--mobile" : "print-deck--desktop"}`}
+          aria-hidden="true"
+        >
           {deck.slides.map((slide, slideIndex) => (
             <div className="print-deck__page" key={slide.id}>
-              <SlideTemplate
-                slide={slide}
-                meta={deck.meta}
-                slideNumber={slideIndex + 1}
-                slideCount={deck.slides.length}
-              />
+              {isMobilePdfExport ? (
+                <div className="slide-viewport is-mobile">
+                  <SlideTemplate
+                    slide={slide}
+                    meta={deck.meta}
+                    slideNumber={slideIndex + 1}
+                    slideCount={deck.slides.length}
+                  />
+                </div>
+              ) : (
+                <SlideTemplate
+                  slide={slide}
+                  meta={deck.meta}
+                  slideNumber={slideIndex + 1}
+                  slideCount={deck.slides.length}
+                />
+              )}
             </div>
           ))}
         </div>

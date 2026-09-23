@@ -30,17 +30,18 @@ The 27-slide Promo Tools deck also uses `index`, `card-grid`, `process`, `tool-o
 template sequence so design changes remain consistent across all tools.
 
 The product hover palette is shared across slide 2 index rows, the row/column interactions on
-slides 6–7, and the proof cards on slide 26. PDF exports preserve animated content in a static
-final state and use solid Playson gold for typography that uses gradient clipping in the
-interactive deck.
+slides 6–7, and the proof cards on slide 26. Desktop and mobile PDF exports preserve animated
+content in a static final state and use solid Playson gold for typography that uses gradient
+clipping in the interactive deck.
 
 ## Mobile deck patterns
 
 Viewports up to 700px use a 390×844 portrait canvas. Content that exceeds the canvas is fitted
 automatically so slides do not require vertical scrolling. Slide 6 uses tappable tool cards with
-full-column detail overlays, while slide 7 uses a two-tool selector and compact comparison grid.
-Product overview slides center the relevant logo beneath the title, and mobile card groups enter
-sequentially. Desktop and PDF layouts retain the 1440×810 composition.
+full-column detail overlays, while slide 7 uses the full horizontally scrollable matrix with
+product-coloured columns and filters for hiding columns. Product overview slides center the
+relevant logo beneath the title, and mobile card groups enter sequentially. The desktop PDF keeps
+the 1440×810 composition; the mobile PDF exports the static 390×844 portrait layouts.
 
 ## Images
 

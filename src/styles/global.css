@@ -300,7 +300,7 @@ a {
   -webkit-text-fill-color: transparent;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 700px), print {
   .app-nav {
     display: none;
   }
@@ -406,6 +406,11 @@ a {
     size: 16in 9in;
   }
 
+  @page mobile {
+    margin: 0;
+    size: 390px 844px;
+  }
+
   body {
     background: #000;
     print-color-adjust: exact;
@@ -439,6 +444,12 @@ a {
     width: 16in;
   }
 
+  .print-deck--mobile .print-deck__page {
+    height: 844px;
+    page: mobile;
+    width: 390px;
+  }
+
   .print-deck__page:last-child {
     break-after: auto;
     page-break-after: auto;
@@ -448,6 +459,23 @@ a {
     left: 0;
     top: 0;
     transform: scale(1.0666667);
+    transform-origin: top left;
+  }
+
+  .print-deck--mobile .slide-viewport.is-mobile {
+    aspect-ratio: 390 / 844;
+    display: block;
+    height: 844px;
+    max-height: none;
+    max-width: none;
+    position: relative;
+    width: 390px;
+  }
+
+  .print-deck--mobile .slide {
+    left: 0;
+    top: 0;
+    transform: none;
     transform-origin: top left;
   }
 
@@ -523,7 +551,8 @@ a {
     top: 650px;
   }
 
-  .contact-layout__download {
+  .contact-layout__download,
+  .pdf-choice {
     display: none !important;
   }
 }

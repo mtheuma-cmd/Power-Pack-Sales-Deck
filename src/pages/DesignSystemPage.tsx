@@ -80,7 +80,7 @@ const overviewLogos = [
 
 const mobileDeckPreviews = [
   ["Tool cards + detail", "five-tools"],
-  ["Two-tool comparison", "toolkit-matrix"],
+  ["Scrollable filtered matrix", "toolkit-matrix"],
   ["Tool overview", "flexible-free-spins-overview"],
 ] as const;
 
@@ -88,7 +88,7 @@ const mobileDeckRules = [
   ["Breakpoint", "≤ 700px"],
   ["Portrait canvas", "390 × 844"],
   ["Content behaviour", "Auto-fit without vertical scrolling"],
-  ["Tables", "Dedicated cards and two-tool comparison"],
+  ["Tables", "Product-coloured columns with visibility filters"],
   ["Tool cards", "Sequential entrance animation"],
   ["Desktop and PDF", "Original 1440 × 810 composition"],
 ] as const;
@@ -264,17 +264,24 @@ export function DesignSystemPage() {
             <span className="slide__number">14 / 27</span>
           </div>
         </Showcase>
-        <Showcase title="Contact actions">
+        <Showcase title="Contact actions and PDF formats">
           <div className="docs-contact-preview">
             <a className="contact-layout__action" href="https://playson.com/contacts" target="_blank" rel="noopener noreferrer">
               LET’S HAVE A CHAT
             </a>
             <a
               className="ds-button ds-button--glass contact-layout__download"
-              href={`${asset("playson-power-pack-sales-deck.pdf")}?v=20260917-1737`}
-              download="Playson-Power-Pack-Sales-Deck.pdf"
+              href={`${asset("playson-power-pack-sales-deck.pdf")}?v=20260923-1606`}
+              download="Playson-Power-Pack-Sales-Deck-Desktop.pdf"
             >
-              Download PDF
+              Desktop PDF
+            </a>
+            <a
+              className="ds-button ds-button--glass contact-layout__download"
+              href={`${asset("playson-power-pack-sales-deck-mobile.pdf")}?v=20260923-1606`}
+              download="Playson-Power-Pack-Sales-Deck-Mobile.pdf"
+            >
+              Mobile PDF
             </a>
           </div>
         </Showcase>
@@ -286,6 +293,10 @@ export function DesignSystemPage() {
             <strong>Solid Playson gold</strong>
             <span>Falling product icons</span>
             <strong>Fixed visible positions</strong>
+            <span>Desktop PDF</span>
+            <strong>16:9 landscape</strong>
+            <span>Mobile PDF</span>
+            <strong>390 × 844 portrait</strong>
           </div>
         </Showcase>
       </DocsSection>

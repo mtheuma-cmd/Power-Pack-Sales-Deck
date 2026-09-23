@@ -2,10 +2,11 @@
 set -euo pipefail
 
 root="$(cd "$(dirname "$0")/.." && pwd)"
-out="$root/public/playson-power-pack-sales-deck.pdf"
+desktop_out="$root/public/playson-power-pack-sales-deck.pdf"
+mobile_out="$root/public/playson-power-pack-sales-deck-mobile.pdf"
 chrome="${CHROME_PATH:-/Applications/Google Chrome.app/Contents/MacOS/Google Chrome}"
 port="${PDF_PREVIEW_PORT:-4173}"
-url="http://127.0.0.1:${port}/?export-pdf=1"
+base_url="http://127.0.0.1:${port}/"
 
 if [[ ! -x "$chrome" ]]; then
   echo "Google Chrome was not found at $chrome" >&2
@@ -37,7 +38,18 @@ curl -fsS "http://127.0.0.1:${port}/" >/dev/null
   --hide-scrollbars \
   --no-pdf-header-footer \
   --virtual-time-budget=120000 \
-  --print-to-pdf="$out" \
-  "$url"
+  --print-to-pdf="$desktop_out" \
+  "${base_url}?export-pdf=desktop"
 
-echo "Wrote $out"
+"$chrome" \
+  --headless=new \
+  --disable-gpu \
+  --hide-scrollbars \
+  --no-pdf-header-footer \
+  --virtual-time-budget=120000 \
+  --window-size=390,844 \
+  --print-to-pdf="$mobile_out" \
+  "${base_url}?export-pdf=mobile"
+
+echo "Wrote $desktop_out"
+echo "Wrote $mobile_out"
