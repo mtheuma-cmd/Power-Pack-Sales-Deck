@@ -38,6 +38,9 @@ trivy fs --scanners vuln --severity HIGH,CRITICAL --exit-code 1 package-lock.jso
 Push to GitHub and let `.github/workflows/pages.yml` publish GitHub Pages. The live deck URL is
 `https://mtheuma-cmd.github.io/Power-Pack-Sales-Deck/`.
 
+To let colleagues edit in Cursor, add them as GitHub collaborators and send `Colleague-setup.md`.
+After cloning they can open `Interactive Power Pack SD.code-workspace`.
+
 ## Troubleshooting
 
 - A blank slide usually indicates an invalid route or slide ID; run `npm run validate:deck`.
