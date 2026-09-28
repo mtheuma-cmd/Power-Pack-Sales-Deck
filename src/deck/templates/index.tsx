@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useState, type CSSProperties, type ReactNode } from "react";
-import { createPortal } from "react-dom";
 import { promoToolsDeckData } from "../../decks/promo-tools-deck";
 import {
   Button,
@@ -1019,19 +1018,6 @@ function ContactTemplate({
   slide: Extract<SlideData, { type: "contact" }>;
   meta: DeckMeta;
 }) {
-  const [pdfChooserOpen, setPdfChooserOpen] = useState(false);
-
-  useEffect(() => {
-    if (!pdfChooserOpen) return;
-
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setPdfChooserOpen(false);
-    };
-
-    window.addEventListener("keydown", closeOnEscape);
-    return () => window.removeEventListener("keydown", closeOnEscape);
-  }, [pdfChooserOpen]);
-
   return (
     <SlideFrame className="slide--contact">
       <div className="slide__content">
@@ -1055,71 +1041,16 @@ function ContactTemplate({
             ) : (
               <strong className="contact-layout__action">{slide.contact}</strong>
             )}
-            <button
+            <a
               className="ds-button ds-button--glass contact-layout__download"
-              type="button"
-              aria-haspopup="dialog"
-              aria-expanded={pdfChooserOpen}
-              onClick={(event) => {
-                event.preventDefault();
-                event.stopPropagation();
-                setPdfChooserOpen(true);
-              }}
+              href={`${asset("playson-power-pack-sales-deck.pdf")}?v=20260923-1636`}
+              download="Playson-Power-Pack-Sales-Deck-Desktop.pdf"
             >
               Download PDF
-            </button>
+            </a>
           </div>
         </div>
       </div>
-      {pdfChooserOpen &&
-        createPortal(
-          <div
-            className="pdf-choice"
-            role="presentation"
-            onClick={(event) => {
-              event.stopPropagation();
-              if (event.currentTarget === event.target) setPdfChooserOpen(false);
-            }}
-          >
-            <section
-              className="pdf-choice__dialog"
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="pdf-choice-title"
-            >
-              <button
-                className="pdf-choice__close"
-                type="button"
-                aria-label="Close PDF download options"
-                onClick={() => setPdfChooserOpen(false)}
-              >
-                ×
-              </button>
-              <span className="pdf-choice__eyebrow">Download PDF</span>
-              <h2 id="pdf-choice-title">Choose your format</h2>
-              <p>Select the version designed for the screen you will present or share on.</p>
-              <div className="pdf-choice__options">
-                <a
-                  href={`${asset("playson-power-pack-sales-deck.pdf")}?v=20260923-1636`}
-                  download="Playson-Power-Pack-Sales-Deck-Desktop.pdf"
-                >
-                  <span>16:9</span>
-                  <strong>Desktop PDF</strong>
-                  <small>Landscape presentation</small>
-                </a>
-                <a
-                  href={`${asset("playson-power-pack-sales-deck-mobile.pdf")}?v=20260923-1636`}
-                  download="Playson-Power-Pack-Sales-Deck-Mobile.pdf"
-                >
-                  <span>9:16</span>
-                  <strong>Mobile PDF</strong>
-                  <small>Portrait presentation</small>
-                </a>
-              </div>
-            </section>
-          </div>,
-          document.body,
-        )}
     </SlideFrame>
   );
 }

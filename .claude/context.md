@@ -47,9 +47,8 @@ and templates compose design-system components and CSS tokens.
 - Deck headers use the approved PLAYSON and GET MORE SVG brand assets.
 - The deck player provides session-only click-to-edit text. Edits stay in memory while navigating
   and are intentionally not written to browser storage or source files.
-- The final-slide Download PDF action opens a format chooser for the landscape desktop PDF and
-  portrait mobile PDF. The chooser is portaled to `document.body` so the scaled slide canvas
-  cannot clip it. `npm run export-pdf` regenerates both
+- The final-slide Download PDF action downloads the landscape desktop PDF directly on both
+  desktop and mobile. `npm run export-pdf` regenerates both
   `public/playson-power-pack-sales-deck.pdf` and
   `public/playson-power-pack-sales-deck-mobile.pdf`. `?export-pdf=desktop` renders the 16:9 deck;
   `?export-pdf=mobile` renders static 9:16 mobile slides.

@@ -551,8 +551,7 @@ a {
     top: 650px;
   }
 
-  .print-deck .contact-layout__download,
-  .print-deck .pdf-choice {
+  .print-deck .contact-layout__download {
     display: none !important;
   }
 }

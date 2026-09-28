@@ -51,7 +51,7 @@ function editableTextElements(viewport: HTMLDivElement | null) {
       (node) => node.nodeType === Node.TEXT_NODE && node.textContent?.trim(),
     );
     return hasDirectText || (element.childElementCount === 0 && element.textContent?.trim());
-  }).filter((element) => !element.closest("[data-slide-jump], .contact-layout__download, .pdf-choice"));
+  }).filter((element) => !element.closest("[data-slide-jump], .contact-layout__download"));
 
   return candidates.filter(
     (element) => !candidates.some((parent) => parent !== element && parent.contains(element)),

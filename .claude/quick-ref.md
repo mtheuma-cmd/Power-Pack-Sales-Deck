@@ -26,7 +26,7 @@ trivy fs --scanners vuln --severity HIGH,CRITICAL --exit-code 1 package-lock.jso
 3. Import the deck in `src/App.tsx`.
 4. Open the deck route and use `#slide=<id>` to link to a slide.
 5. Use browser fullscreen to present. After deck changes, run `npm run export-pdf` so the
-   final-slide format chooser serves current desktop and mobile PDF files.
+   final-slide download serves the current desktop PDF.
 6. Select **Edit text** in the deck controls to edit visible copy. These edits persist while
    navigating, but reset when the browser reloads; update the deck data for permanent changes.
 7. Check responsive slides at 390×693.333 (9:16). Mobile slides auto-fit to the portrait canvas. Slide 6 uses
