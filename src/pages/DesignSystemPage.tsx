@@ -87,6 +87,7 @@ const mobileDeckPreviews = [
 const mobileDeckRules = [
   ["Breakpoint", "≤ 700px"],
   ["Portrait canvas", "390 × 693.333 (9:16)"],
+  ["Header and footer", "Fixed visual size across every slide"],
   ["Content behaviour", "Auto-fit without vertical scrolling"],
   ["Tables", "Product-coloured columns with visibility filters"],
   ["Tool cards", "Sequential entrance animation"],

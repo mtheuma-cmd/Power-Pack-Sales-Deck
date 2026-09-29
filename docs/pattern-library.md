@@ -37,7 +37,8 @@ clipping in the interactive deck.
 ## Mobile deck patterns
 
 Viewports up to 700px use an exact 9:16 portrait canvas (390×693.333). Content that exceeds the canvas is fitted
-automatically so slides do not require vertical scrolling. Slide 6 uses tappable tool cards with
+automatically so slides do not require vertical scrolling. Brand headers and footer chrome retain
+a fixed visual size while slide content scales. Slide 6 uses tappable tool cards with
 full-column detail overlays, while slide 7 uses the full horizontally scrollable matrix with
 product-coloured columns and filters for hiding columns. Product overview slides center the
 relevant logo beneath the title, and mobile card groups enter sequentially. The desktop PDF keeps

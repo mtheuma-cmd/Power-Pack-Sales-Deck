@@ -345,17 +345,14 @@ a {
   }
 
   .slide-viewport.is-mobile .slide__content .ds-deck-header {
-    left: 20px;
-    right: 20px;
-    top: 12px;
-  }
-
-  .slide-viewport.is-mobile .ds-deck-header {
-    height: 48px;
+    height: calc(28px / var(--mobile-content-fit, 1));
+    left: calc(20px / var(--mobile-content-fit, 1));
+    right: calc(20px / var(--mobile-content-fit, 1));
+    top: calc(12px / var(--mobile-content-fit, 1));
   }
 
   .slide-viewport.is-mobile .ds-deck-header__brand {
-    height: 22px;
+    height: calc(18px / var(--mobile-content-fit, 1));
   }
 
   .slide-viewport.is-mobile .ds-deck-header__context {
@@ -363,7 +360,7 @@ a {
   }
 
   .slide-viewport.is-mobile .ds-deck-header__action {
-    height: 13px;
+    height: calc(11px / var(--mobile-content-fit, 1));
   }
 
   .slide-viewport.is-mobile .slide__title {

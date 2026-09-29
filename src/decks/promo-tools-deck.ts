@@ -106,7 +106,6 @@ const toolModules: ToolModuleContent[] = [
       "Prizes are credited immediately after the race ends.",
     ],
     journey: ["Join and play", "Earn points and climb", "Compete for top prizes"],
-    playerFooter: "Capture the join control, live leaderboard and end-of-race result from the approved Turbo Races demo.",
     options: [
       { title: "Bet Race", drives: "Rewards wagering activity; supports higher-value play." },
       { title: "Win Race", drives: "Rewards winning sessions; creates prize excitement." },

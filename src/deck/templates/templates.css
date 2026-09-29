@@ -2371,6 +2371,10 @@
     width: 100%;
   }
 
+  .slide-viewport.is-mobile .template-footer {
+    font-size: calc(11px / var(--mobile-content-fit, 1));
+  }
+
   .slide-viewport.is-mobile .closing-layout {
     margin-top: 180px;
   }
