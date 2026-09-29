@@ -94,7 +94,7 @@ function Header({ meta }: { meta: DeckMeta }) {
   return (
     <DeckHeader
       brand={meta.brand}
-      context={`${meta.title} • ${meta.market} • ${meta.date}`}
+      context={`${meta.title} • ${meta.market}`}
     />
   );
 }

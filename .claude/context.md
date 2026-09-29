@@ -31,8 +31,11 @@ and templates compose design-system components and CSS tokens.
   portrait canvas (390×693.333). Oversized slides auto-fit instead of scrolling, while mobile
   brand headers and footer chrome retain fixed visual dimensions. Slide 6 uses tappable tool
   cards with full-column detail overlays; slide 7 uses the full horizontally scrollable matrix
-  with product-coloured columns and filters for hiding columns. Overview slides center product
-  logos under the title. Desktop and PDF keep the original tables and composition.
+  with product-coloured columns and filters for hiding columns; its compact rows must stay clear
+  of the Back to Index footer. Overview slides center product logos under the title. Desktop and
+  PDF keep the original tables and composition.
+- Slide headers show only the deck title and market; `meta.date` remains required deck metadata
+  but is not displayed.
 - Every slide renders `<PlaysonBackground />` using `background/Background.png` and three
   deterministic CSS particle layers; standalone previews use `DeckBackground`.
 - Translucent card surfaces apply localized backdrop blur so particles soften only while passing

@@ -1866,6 +1866,10 @@
     text-align: right;
   }
 
+  .slide-viewport.is-mobile .slide--toolkit-matrix .slide__content {
+    padding-bottom: 78px;
+  }
+
   .slide-viewport.is-mobile .mobile-tool-matrix {
     display: block;
     margin-top: 14px;
@@ -2002,20 +2006,20 @@
   .slide-viewport.is-mobile .mobile-tool-matrix__scroll td {
     border-left: 1px solid rgb(255 255 255 / 8%);
     border-top: 1px solid rgb(255 255 255 / 8%);
-    font-size: 9px;
-    height: 49px;
-    line-height: 1.25;
-    padding: 7px;
+    font-size: 8.5px;
+    height: 32px;
+    line-height: 1.15;
+    padding: 3px 6px;
     vertical-align: middle;
     white-space: normal;
-    width: 140px;
+    width: 132px;
   }
 
   .slide-viewport.is-mobile .mobile-tool-matrix__scroll thead th {
     border-top: 0;
-    font-size: 10px;
+    font-size: 9.5px;
     font-weight: 700;
-    height: 58px;
+    height: 44px;
     text-align: center;
   }
 
