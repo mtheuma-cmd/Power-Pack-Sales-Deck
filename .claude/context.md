@@ -57,6 +57,8 @@ and templates compose design-system components and CSS tokens.
   images, video, and logos correctly.
 - GitHub Pages deploys from `.github/workflows/pages.yml`. The hosted deck is INTERNAL and should
   remain on a private Pages site.
+- `main` is protected. Collaborators work on branches and can merge only through a pull request
+  approved by `@mtheuma-cmd`, who is the code owner in `.github/CODEOWNERS`.
 - Styling uses native CSS variables without a UI framework to preserve direct Figma-token mapping.
 - Brand guideline tokens include the full red and neutral ramps, extended accent palette, and
   approved linear gradients. Reusable CSS-rendered landscape and portrait background variants are

@@ -48,5 +48,6 @@ Push to GitHub and let `.github/workflows/pages.yml` publish GitHub Pages. The l
 
 ## Git workflow
 
-Create a feature branch, run all verification commands, then submit changes for review. Do not
-commit `node_modules`, `dist`, credentials, or exported confidential deck content.
+Create a feature branch and open a pull request. `main` rejects direct pushes from collaborators
+and requires approval from `@mtheuma-cmd` before merge. Do not commit `node_modules`, `dist`,
+credentials, or exported confidential deck content.
