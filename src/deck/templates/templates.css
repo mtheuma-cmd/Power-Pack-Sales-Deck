@@ -977,6 +977,15 @@
   -webkit-text-fill-color: transparent;
 }
 
+.slide--proof .content-card h2,
+.slide--proof .content-card .ds-tag {
+  background: none;
+  background-clip: border-box;
+  color: var(--text-primary);
+  -webkit-background-clip: border-box;
+  -webkit-text-fill-color: var(--text-primary);
+}
+
 .content-card--featured h2 {
   margin: 0;
 }

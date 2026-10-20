@@ -523,6 +523,12 @@ a {
     -webkit-text-fill-color: #ffbd00 !important;
   }
 
+  .print-deck .slide--proof .content-card h2,
+  .print-deck .slide--proof .content-card .ds-tag {
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+  }
+
   .print-deck .blast-fall img {
     animation: none !important;
     opacity: 0.2;

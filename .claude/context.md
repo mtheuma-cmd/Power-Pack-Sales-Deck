@@ -60,7 +60,8 @@ and templates compose design-system components and CSS tokens.
 - Slides kept out of the live sequence live in `archivedSlides`. The deck navigation opens that
   section with `#section=archive`. Archived slides are omitted from the presentation count and PDF.
 - Performance figures, unboxed process numbers, and slide subtitles use the shared warm-gold
-  text gradient. PDF export uses solid Playson gold for those clipped-text styles.
+  text gradient. PDF export uses solid Playson gold for those clipped-text styles. On the proof
+  cards, only the metric stays gold; the title and product name stay white on screen and in PDF.
 - Deck headers use the approved PLAYSON and GET MORE SVG brand assets.
 - The deck player provides session-only click-to-edit text. Edits stay in memory while navigating
   and are intentionally not written to browser storage or source files.
