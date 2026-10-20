@@ -87,6 +87,7 @@ export function DeckPlayer({ deck }: { deck: DeckData }) {
 
   useEffect(() => {
     const syncFromHash = () => setIndex(indexFromHash(deck));
+    syncFromHash();
     window.addEventListener("hashchange", syncFromHash);
     return () => window.removeEventListener("hashchange", syncFromHash);
   }, [deck]);

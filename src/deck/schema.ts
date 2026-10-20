@@ -200,6 +200,7 @@ export type SlideData =
 export interface DeckData {
   meta: DeckMeta;
   slides: SlideData[];
+  archivedSlides?: SlideData[];
 }
 
 export function validateDeck(deck: DeckData): string[] {
@@ -211,7 +212,7 @@ export function validateDeck(deck: DeckData): string[] {
   if (deck.slides.length === 0) errors.push("Deck must include at least one slide.");
 
   const ids = new Set<string>();
-  deck.slides.forEach((slide, index) => {
+  [...deck.slides, ...(deck.archivedSlides ?? [])].forEach((slide, index) => {
     if (!slide.id.trim()) errors.push(`Slide ${index + 1} requires an id.`);
     if (ids.has(slide.id)) errors.push(`Duplicate slide id: ${slide.id}.`);
     ids.add(slide.id);

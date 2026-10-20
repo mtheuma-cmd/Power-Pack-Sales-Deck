@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, type CSSProperties, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { promoToolsDeckData } from "../../decks/promo-tools-deck";
 import {
   Button,
@@ -201,6 +201,24 @@ function SlideFrame({
   );
 }
 
+const coverProductNames = ["Grand Race", "Flexible Free Spins", "Power Chance"] as const;
+
+function HighlightedProductNames({ text }: { text: string }) {
+  return (
+    <>
+      {text.split(/(Grand Race|Flexible Free Spins|Power Chance)/g).map((part, index) =>
+        coverProductNames.some((name) => name === part) ? (
+          <strong className="cover-product" key={`${part}-${index}`}>
+            {part}
+          </strong>
+        ) : (
+          part
+        ),
+      )}
+    </>
+  );
+}
+
 function CoverTemplate({
   slide,
   meta,
@@ -218,11 +236,13 @@ function CoverTemplate({
           <h1>{slide.title}</h1>
           <p>{slide.subtitle}</p>
           {slide.metrics && slide.metrics.length > 0 && (
-            <div className="cover-metrics">
+            <div className={`cover-metrics cover-metrics--${slide.metrics.length}`}>
               {slide.metrics.map((metric) => (
                 <article className="cover-metric" key={`${metric.value}-${metric.label}`}>
                   <strong>{metric.value}</strong>
-                  <span>{metric.label}</span>
+                  <span>
+                    <HighlightedProductNames text={metric.label} />
+                  </span>
                 </article>
               ))}
             </div>
@@ -376,6 +396,35 @@ function RankingTemplate({
   );
 }
 
+const toolLogos: Record<string, string> = {
+  "Flexible Free Spins": "/promo-assets/LOGO-Flexi-Spins.png",
+  "Grand Race": "/promo-assets/LOGO-Grand-race.png",
+  "Turbo Races": "/promo-assets/LOGO-turbo-races.png",
+  "Power Blasts": "/promo-assets/LOGO-power-blasts.png",
+  "Power Chance": "/promo-assets/LOGO-Power-Chance.png",
+};
+
+const toolIcons: Record<string, string> = {
+  "Flexible Free Spins": "/promo-assets/Flexi-1000x1000.png",
+  "Grand Race": "/promo-assets/Grand_Race-Icon-1000x1000.png",
+  "Turbo Races": "/promo-assets/Turbo_Races-Icon-1000x1000.png",
+  "Power Blasts": "/promo-assets/Power_Blasts-Icon-1000x1000.png",
+  "Power Chance": "/promo-assets/LOGO-Power-Chance.png",
+};
+
+function ToolLogo({ name, icon = false }: { name: string; icon?: boolean }) {
+  const src = (icon ? toolIcons : toolLogos)[name];
+  if (!src) return <strong>{name}</strong>;
+
+  return (
+    <img
+      className={`index-list__logo${icon ? " index-list__logo--icon" : ""}${!icon && name === "Flexible Free Spins" ? " index-list__logo--flexi" : ""}`}
+      src={asset(src)}
+      alt={name}
+    />
+  );
+}
+
 function ComparisonTemplate({
   slide,
   meta,
@@ -385,6 +434,19 @@ function ComparisonTemplate({
 }) {
   const hasDedicatedMobileLayout = slide.id === "five-tools" || slide.id === "toolkit-matrix";
   const [openTool, setOpenTool] = useState<number | null>(null);
+  const layoutRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (slide.id !== "toolkit-matrix") return;
+    const table = layoutRef.current?.querySelector<HTMLTableElement>("table");
+    if (!table) return;
+
+    const syncHeight = () => table.style.setProperty("--matrix-table-height", `${table.offsetHeight}px`);
+    syncHeight();
+    const observer = new ResizeObserver(syncHeight);
+    observer.observe(table);
+    return () => observer.disconnect();
+  }, [slide.id]);
 
   return (
     <SlideFrame className={`slide--comparison ${slide.id === "toolkit-matrix" ? "slide--toolkit-matrix" : ""} ${slide.id === "five-tools" ? "slide--five-tools" : ""} ${openTool !== null ? "slide--tool-detail-open" : ""}`}>
@@ -394,11 +456,24 @@ function ComparisonTemplate({
         <h1 className="slide__title">{slide.title}</h1>
         {slide.body && <p className="slide__body">{slide.body}</p>}
         <div
+          ref={layoutRef}
           className={`comparison-layout ${hasDedicatedMobileLayout ? "comparison-layout--desktop" : ""} ${
             slide.legend.length === 0 ? "comparison-layout--table-only" : ""
           }`}
         >
-          <ComparisonTable columns={slide.columns} rows={slide.rows} />
+          <ComparisonTable
+            columns={slide.columns}
+            rows={slide.rows}
+            renderValue={
+              slide.id === "five-tools"
+                ? (value, _rowIndex, columnIndex) =>
+                    columnIndex === 0 && typeof value === "string" ? <ToolLogo name={value} /> : value
+                : undefined
+            }
+            renderColumn={
+              slide.id === "toolkit-matrix" ? (column) => <ToolLogo name={column} icon /> : undefined
+            }
+          />
           {slide.legend.length > 0 && <ChartLegend items={slide.legend} />}
         </div>
         {slide.id === "five-tools" && <MobileToolCards slide={slide} onOpen={setOpenTool} />}
@@ -648,7 +723,7 @@ function MobileToolkitCompare({
                   scope="col"
                   key={slide.columns[toolIndex]}
                 >
-                  {slide.columns[toolIndex]}
+                  <ToolLogo name={slide.columns[toolIndex]} icon />
                 </th>
               ))}
             </tr>
@@ -720,7 +795,8 @@ function IndexTemplate({
                 }}
               >
                 <span>{row.need}</span>
-                <strong>{row.tool}</strong>
+                <strong className="index-list__name">{row.tool}</strong>
+                <ToolLogo name={row.tool} />
                 <Tag tone="neutral" data-slide-jump={canJump ? "" : undefined}>
                   {row.target}
                 </Tag>
@@ -799,11 +875,11 @@ function ProcessTemplate({
 }
 
 const toolJumpLinks: Record<string, { slideId: string; slideNumber: number }> = {
-  "Flexible Free Spins": { slideId: "flexible-free-spins-overview", slideNumber: 10 },
-  "Grand Race": { slideId: "grand-race-overview", slideNumber: 13 },
-  "Turbo Races": { slideId: "turbo-races-overview", slideNumber: 16 },
-  "Power Blasts": { slideId: "power-blasts-overview", slideNumber: 19 },
-  "Power Chance": { slideId: "power-chance-overview", slideNumber: 22 },
+  "Flexible Free Spins": { slideId: "flexible-free-spins-overview", slideNumber: 11 },
+  "Grand Race": { slideId: "grand-race-overview", slideNumber: 14 },
+  "Turbo Races": { slideId: "turbo-races-overview", slideNumber: 17 },
+  "Power Blasts": { slideId: "power-blasts-overview", slideNumber: 20 },
+  "Power Chance": { slideId: "power-chance-overview", slideNumber: 23 },
 };
 
 function ToolAvoidWhenCopy({

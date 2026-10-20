@@ -185,17 +185,6 @@ const toolModules: ToolModuleContent[] = [
 
 const moduleSlides = toolModules.flatMap((tool): SlideData[] => [
   {
-    id: `${tool.slug}-overview`,
-    type: "tool-overview",
-    tool: tool.name,
-    title: tool.overviewTitle,
-    job: tool.job,
-    useWhen: tool.useWhen,
-    avoidWhen: tool.avoidWhen,
-    proof: tool.proof,
-    backgroundSrc: tool.overviewBackgroundSrc,
-  },
-  {
     id: `${tool.slug}-player`,
     type: "tool-player",
     tool: tool.name,
@@ -205,6 +194,17 @@ const moduleSlides = toolModules.flatMap((tool): SlideData[] => [
     callouts: tool.callouts,
     journey: tool.journey,
     footer: tool.playerFooter,
+    backgroundSrc: tool.overviewBackgroundSrc,
+  },
+  {
+    id: `${tool.slug}-overview`,
+    type: "tool-overview",
+    tool: tool.name,
+    title: tool.overviewTitle,
+    job: tool.job,
+    useWhen: tool.useWhen,
+    avoidWhen: tool.avoidWhen,
+    proof: tool.proof,
     backgroundSrc: tool.overviewBackgroundSrc,
   },
   {
@@ -233,9 +233,11 @@ const promoToolsDeck: DeckData = {
       title: "Playson Power Pack",
       subtitle: "Five Measurable Performance Levers.",
       metrics: [
-        { value: "+200%", label: "Players on Grand Race participating slots" },
-        { value: "−20%", label: "Free Spins abandonment with Flexible Free Spins" },
-        { value: "+66%", label: "Average bet in Power Chance games" },
+        { value: "−20% abandonment", label: "on Free Spins with Flexible Free Spins" },
+        { value: "+200% players", label: "on Grand Race participating slots" },
+        { value: "+66% Average Bet", label: "in Power Chance games" },
+        { value: "+13% Unique Players", label: "on participating slots" },
+        { value: "+85% total bets", label: "on participating slots" },
       ],
     },
     {
@@ -348,19 +350,6 @@ const promoToolsDeck: DeckData = {
     },
     ...moduleSlides,
     {
-      id: "thirty-days",
-      type: "card-grid",
-      title: "30 Days with the Playson Power Pack",
-      body: "Here’s how a month of our tools could look at your casino — built around different player moments.",
-      cards: [
-        { eyebrow: "Week 1", title: "Launch Grand Race", body: "Open a longer leaderboard campaign and establish visible positions." },
-        { eyebrow: "Week 2", title: "Add Turbo Races", body: "Run short prime-time races as repeat side competitions." },
-        { eyebrow: "Week 3", title: "Layer in Power Blasts", body: "Use instant drops to create reward moments during active sessions." },
-        { eyebrow: "Week 4", title: "Finish Grand Race", body: "Close the campaign, credit prizes and recap the winners." },
-        { title: "Across the month:", body: "Use Flexible Free Spins for targeted offers. Keep Power Chance available inside selected titles for ongoing jackpot potential.", featured: true },
-      ],
-    },
-    {
       id: "proof",
       type: "card-grid",
       title: "The Numbers Behind the Product",
@@ -376,10 +365,34 @@ const promoToolsDeck: DeckData = {
     {
       id: "contact",
       type: "contact",
-      title: "What Could Your Next Promotion Do?",
+      title: "Ready to Turn Engagement Into More Revenue?",
       body: "Tell us your goals and priorities, we’ll do the rest.",
       contact: "LET’S HAVE A CHAT",
       contactHref: "https://playson.com/contacts",
+    },
+  ],
+  archivedSlides: [
+    {
+      id: "archive",
+      type: "section",
+      number: "A",
+      eyebrow: "Archive",
+      title: "Archived slides",
+      body: "Kept out of the live presentation. These slides can be brought back when they are needed.",
+    },
+    {
+      id: "thirty-days",
+      type: "card-grid",
+      eyebrow: "Archived",
+      title: "30 Days with the Playson Power Pack",
+      body: "Here’s how a month of our tools could look at your casino — built around different player moments.",
+      cards: [
+        { eyebrow: "Week 1", title: "Launch Grand Race", body: "Open a longer leaderboard campaign and establish visible positions." },
+        { eyebrow: "Week 2", title: "Add Turbo Races", body: "Run short prime-time races as repeat side competitions." },
+        { eyebrow: "Week 3", title: "Layer in Power Blasts", body: "Use instant drops to create reward moments during active sessions." },
+        { eyebrow: "Week 4", title: "Finish Grand Race", body: "Close the campaign, credit prizes and recap the winners." },
+        { title: "Across the month:", body: "Use Flexible Free Spins for targeted offers. Keep Power Chance available inside selected titles for ongoing jackpot potential.", featured: true },
+      ],
     },
   ],
 };

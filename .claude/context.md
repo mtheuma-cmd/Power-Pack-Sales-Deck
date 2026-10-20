@@ -27,13 +27,24 @@ and templates compose design-system components and CSS tokens.
 
 ## Design decisions
 
+- The live Promo Tools deck has 26 slides. Each product module is ordered player, overview,
+  then configuration, so player slides are 10, 13, 16, 19, and 22 and overview slides are 11, 14,
+  17, 20, and 23.
 - Desktop slides use fixed 1440×810 coordinates. Viewports up to 700px switch to an exact 9:16
   portrait canvas (390×693.333). Oversized slides auto-fit instead of scrolling, while mobile
   brand headers and footer chrome retain fixed visual dimensions. Slide 6 uses tappable tool
-  cards with full-column detail overlays; slide 7 uses the full horizontally scrollable matrix
+  cards with full-column detail overlays. Slide 7 uses the full horizontally scrollable matrix
   with product-coloured columns and filters for hiding columns; its compact rows must stay clear
-  of the Back to Index footer. Overview slides center product logos under the title. Desktop and
-  PDF keep the original tables and composition.
+  of the Back to Index footer, and the Power Blasts header icon is vertically centered in its
+  cell. Desktop comparison tables use product logos or icons. Mobile slides 2 and 6 use
+  gold-gradient tool names instead of those logos. Overview content is vertically centered on
+  mobile. Player titles are centered, and the highlight and journey cards match the width of the
+  1:1 media panel. Desktop and PDF keep the wide table composition.
+- The cover uses five metric cards. Each metric stays on one line, and named products in the
+  supporting line use the warm-gold gradient. Mobile slide 4 process copy uses regular body
+  weight; the gold step numbers stay bold.
+- Falling product icons play once. Mobile shows the same five icons, repositioned and scaled to
+  the portrait canvas.
 - Slide headers show only the deck title and market; `meta.date` remains required deck metadata
   but is not displayed.
 - Every slide renders `<PlaysonBackground />` using `background/Background.png` and three
@@ -45,7 +56,9 @@ and templates compose design-system components and CSS tokens.
 - Slide numbers are omitted on the first and last slides. Back to Index scales on hover
   without the product glow.
 - Tool overview “Explore other tools for” copy links named products to their overview slides
-  (10, 13, 16, 19, 22) with a product-coloured underline and no hover glow.
+  (11, 14, 17, 20, 23) with a product-coloured underline and no hover glow.
+- Slides kept out of the live sequence live in `archivedSlides`. The deck navigation opens that
+  section with `#section=archive`. Archived slides are omitted from the presentation count and PDF.
 - Performance figures, unboxed process numbers, and slide subtitles use the shared warm-gold
   text gradient. PDF export uses solid Playson gold for those clipped-text styles.
 - Deck headers use the approved PLAYSON and GET MORE SVG brand assets.

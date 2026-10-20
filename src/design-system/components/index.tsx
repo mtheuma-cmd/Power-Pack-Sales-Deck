@@ -405,12 +405,16 @@ export function RankedListRow({
 export interface ComparisonTableProps extends HTMLAttributes<HTMLDivElement> {
   columns: string[];
   rows: Array<{ label: string; values: Array<string | number> }>;
+  renderValue?: (value: string | number, rowIndex: number, columnIndex: number) => ReactNode;
+  renderColumn?: (column: string, columnIndex: number) => ReactNode;
 }
 
 export function ComparisonTable({
   columns,
   rows,
   className = "",
+  renderValue,
+  renderColumn,
   ...props
 }: ComparisonTableProps) {
   return (
@@ -419,17 +423,21 @@ export function ComparisonTable({
         <thead>
           <tr>
             <th scope="col">Family</th>
-            {columns.map((column) => (
-              <th scope="col" key={column}>{column}</th>
+            {columns.map((column, index) => (
+              <th scope="col" key={column}>
+                {renderColumn ? renderColumn(column, index) : column}
+              </th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {rows.map((row) => (
+          {rows.map((row, rowIndex) => (
             <tr key={row.label}>
               <th scope="row">{row.label}</th>
               {row.values.map((value, index) => (
-                <td key={`${row.label}-${columns[index] ?? index}`}>{value}</td>
+                <td key={`${row.label}-${columns[index] ?? index}`}>
+                  {renderValue ? renderValue(value, rowIndex, index) : value}
+                </td>
               ))}
             </tr>
           ))}
