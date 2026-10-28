@@ -67,14 +67,14 @@ and templates compose design-system components and CSS tokens.
 - Deck headers use the approved PLAYSON and GET MORE SVG brand assets.
 - The deck player provides session-only click-to-edit text. Edits stay in memory while navigating
   and are intentionally not written to browser storage or source files.
-- The final-slide Download PDF action downloads the landscape desktop PDF directly on both
-  desktop and mobile. `npm run export-pdf` regenerates both
-  `public/playson-power-pack-sales-deck.pdf` and
-  `public/playson-power-pack-sales-deck-mobile.pdf`. `?export-pdf=desktop` renders the 16:9 deck;
-  `?export-pdf=mobile` renders static 9:16 mobile slides.
+- The final-slide Download PDF action downloads the landscape desktop PDF on both
+  desktop and mobile. `npm run export-pdf` regenerates
+  `public/playson-power-pack-sales-deck.pdf`. `?export-pdf=desktop` renders the 16:9 deck.
+  The downloadable PDF hides falling icons and background particles, and player media panels
+  use a still frame that shows the promo logo. The live presentation keeps the animations and video.
 - Deck content remains plain typed data so new decks do not require component changes.
 - `asset()` prefixes public file paths with Vite `BASE_URL` so GitHub Pages project sites load
-  images, video, and logos correctly.
+  images, video, and logos correctly. Absolute http(s) URLs are returned unchanged.
 - GitHub Pages deploys from `.github/workflows/pages.yml`. The hosted deck is INTERNAL and should
   remain on a private Pages site.
 - `main` is protected. Collaborators work on branches and can merge only through a pull request

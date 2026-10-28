@@ -272,17 +272,10 @@ export function DesignSystemPage() {
             </a>
             <a
               className="ds-button ds-button--glass contact-layout__download"
-              href={`${asset("playson-power-pack-sales-deck.pdf")}?v=20260923-1636`}
+              href={`${asset("playson-power-pack-sales-deck.pdf")}?v=20261028-1500`}
               download="Playson-Power-Pack-Sales-Deck-Desktop.pdf"
             >
-              Desktop PDF
-            </a>
-            <a
-              className="ds-button ds-button--glass contact-layout__download"
-              href={`${asset("playson-power-pack-sales-deck-mobile.pdf")}?v=20260923-1636`}
-              download="Playson-Power-Pack-Sales-Deck-Mobile.pdf"
-            >
-              Mobile PDF
+              Download PDF
             </a>
           </div>
         </Showcase>
@@ -292,12 +285,12 @@ export function DesignSystemPage() {
             <strong>Static final state</strong>
             <span>Gradient typography</span>
             <strong>Solid Playson gold</strong>
-            <span>Falling product icons</span>
-            <strong>Fixed visible positions</strong>
-            <span>Desktop PDF</span>
+            <span>Falling icons and particles</span>
+            <strong>Hidden</strong>
+            <span>Media panels</span>
+            <strong>Promo logo frame</strong>
+            <span>PDF</span>
             <strong>16:9 landscape</strong>
-            <span>Mobile PDF</span>
-            <strong>9:16 portrait</strong>
           </div>
         </Showcase>
       </DocsSection>

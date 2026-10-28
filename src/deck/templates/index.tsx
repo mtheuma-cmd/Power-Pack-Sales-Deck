@@ -976,6 +976,14 @@ function ToolOverviewTemplate({
   );
 }
 
+const pdfMediaPosters: Record<string, string> = {
+  "flexible-free-spins-player": "/promo-assets/pdf-posters/flexible-free-spins.jpg",
+  "grand-race-player": "/promo-assets/pdf-posters/grand-race.jpg",
+  "turbo-races-player": "/promo-assets/pdf-posters/turbo-races.jpg",
+  "power-blasts-player": "/promo-assets/pdf-posters/power-blasts.jpg",
+  "power-chance-player": "/promo-assets/pdf-posters/power-chance.jpg",
+};
+
 function ToolPlayerTemplate({
   slide,
   meta,
@@ -996,15 +1004,24 @@ function ToolPlayerTemplate({
         <div className="player-layout">
           <div className={`product-media-placeholder ${slide.mediaSrc ? "product-media-placeholder--video" : ""}`}>
             {slide.mediaSrc ? (
-              <video
-                src={asset(slide.mediaSrc)}
-                autoPlay
-                muted
-                loop
-                playsInline
-                controls
-                preload="auto"
-              />
+              <>
+                <video
+                  src={asset(slide.mediaSrc)}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                  preload="auto"
+                />
+                {pdfMediaPosters[slide.id] && (
+                  <img
+                    className="product-media-poster"
+                    src={asset(pdfMediaPosters[slide.id])}
+                    alt=""
+                  />
+                )}
+              </>
             ) : (
               <>
                 <span>{slide.mediaLabel ?? "Product screenshot"}</span>
@@ -1017,7 +1034,10 @@ function ToolPlayerTemplate({
               <h2>Highlights</h2>
               <ol>
                 {slide.callouts.map((callout, index) => (
-                  <li key={callout}><span>{index + 1}</span>{callout}</li>
+                  <li key={callout}>
+                    <span>{index + 1}</span>
+                    <span className="player-details__text">{callout}</span>
+                  </li>
                 ))}
               </ol>
             </section>
@@ -1119,7 +1139,7 @@ function ContactTemplate({
             )}
             <a
               className="ds-button ds-button--glass contact-layout__download"
-              href={`${asset("playson-power-pack-sales-deck.pdf")}?v=20260923-1636`}
+              href={`${asset("playson-power-pack-sales-deck.pdf")}?v=20261028-1500`}
               download="Playson-Power-Pack-Sales-Deck-Desktop.pdf"
             >
               Download PDF

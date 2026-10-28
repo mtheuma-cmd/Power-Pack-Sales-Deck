@@ -71,7 +71,6 @@ npm run export-pdf
 ```
 
 The final slide downloads the landscape desktop PDF. Refresh
-`public/playson-power-pack-sales-deck.pdf` and
-`public/playson-power-pack-sales-deck-mobile.pdf` with `npm run export-pdf` after slide or styling
+`public/playson-power-pack-sales-deck.pdf` with `npm run export-pdf` after slide or styling
 changes. The original Figma RTF source is retained as reference material and is not part of the
 build.

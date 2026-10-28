@@ -98,6 +98,7 @@ const toolModules: ToolModuleContent[] = [
     useWhen: "Use it for daily activity peaks, short prize cycles and repeat competition without a long campaign commitment.",
     avoidWhen: "Multi-day leaderboard or a personal in-session reward. Check out Grand Race and Power Blasts instead!",
     overviewBackgroundSrc: "/promo-assets/Turbo_Races-BG.png",
+    mediaSrc: "https://playson.com/fm/2026-new-promo-tools/Turbo-Races/Turbo-Races---promo-video.mp4",
     mediaLabel: "Product screenshot / video still",
     callouts: [
       "Players join directly from the game.",
@@ -157,12 +158,12 @@ const toolModules: ToolModuleContent[] = [
     useWhen: "Offer an always-available big-money progressive jackpot layer inside selected Power Chance games, with visible jackpot values and recent-drop information.",
     avoidWhen: "A time-boxed lobby promotion or a mechanic available across every Playson title, or smaller and more personal rewards. Check out Power Blasts!",
     overviewBackgroundSrc: "/promo-assets/Turbo_Races-BG.png",
-    mediaSrc: "/promo-assets/PC-Recording.mp4",
+    mediaSrc: "/promo-assets/PowerChance_looped_logotype.mp4",
     mediaLabel: "Product screenshot / video loop",
     callouts: [
       "The jackpot widget keeps the progressive and fixed tiers visible during play.",
       "When Power Chance triggers, the player enters the Pick & Win jackpot feature.",
-      "The player picks one of four options to reveal a jackpot (1 progressive jackpot plus fixed jackpots worth 1,000×, 200× and 100× total bet).",
+      "The player picks one of four options to reveal a jackpot\n(1 progressive jackpot plus fixed jackpots worth 1,000×, 200×\nand 100× total bet).",
       "The win pop-up confirms the result; recent drops remain one click away.",
     ],
     journey: [

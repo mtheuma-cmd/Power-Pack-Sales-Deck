@@ -3,7 +3,6 @@ set -euo pipefail
 
 root="$(cd "$(dirname "$0")/.." && pwd)"
 desktop_out="$root/public/playson-power-pack-sales-deck.pdf"
-mobile_out="$root/public/playson-power-pack-sales-deck-mobile.pdf"
 chrome="${CHROME_PATH:-/Applications/Google Chrome.app/Contents/MacOS/Google Chrome}"
 port="${PDF_PREVIEW_PORT:-4173}"
 base_url="http://127.0.0.1:${port}/"
@@ -41,15 +40,4 @@ curl -fsS "http://127.0.0.1:${port}/" >/dev/null
   --print-to-pdf="$desktop_out" \
   "${base_url}?export-pdf=desktop"
 
-"$chrome" \
-  --headless=new \
-  --disable-gpu \
-  --hide-scrollbars \
-  --no-pdf-header-footer \
-  --virtual-time-budget=120000 \
-  --window-size=390,693 \
-  --print-to-pdf="$mobile_out" \
-  "${base_url}?export-pdf=mobile"
-
 echo "Wrote $desktop_out"
-echo "Wrote $mobile_out"

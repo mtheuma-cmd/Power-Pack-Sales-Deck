@@ -125,7 +125,7 @@
 
 .cover-metric > span {
   color: var(--text-secondary);
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
   line-height: 1.35;
 }
@@ -312,7 +312,8 @@
 
 .slide--comparison .ds-comparison-table th,
 .slide--comparison .ds-comparison-table td {
-  font-size: 13px;
+  font-size: 15px;
+  font-weight: 700;
   height: 48px;
   padding: 0 12px;
 }
@@ -453,6 +454,7 @@
 }
 
 .slide--toolkit-matrix .ds-comparison-table thead th {
+  border-bottom: 1px solid rgb(255 255 255 / 14%);
   height: 86px;
   padding-top: 14px;
 }
@@ -469,8 +471,7 @@
 }
 
 .slide--toolkit-matrix .ds-comparison-table thead th .index-list__logo--icon[alt="Power Blasts"] {
-  height: 66px;
-  width: 66px;
+  transform: translateY(-8px);
 }
 
 .slide--toolkit-matrix .ds-comparison-table {
@@ -486,9 +487,17 @@
   background: transparent;
 }
 
+.slide--toolkit-matrix .ds-comparison-table tbody :is(th, td) {
+  border-bottom: 1px solid rgb(255 255 255 / 14%);
+}
+
+.slide--toolkit-matrix .ds-comparison-table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+
 .slide--toolkit-matrix .ds-comparison-table tbody td:first-of-type {
   color: inherit;
-  font-weight: 600;
+  font-weight: 700;
   -webkit-text-fill-color: inherit;
 }
 
@@ -987,6 +996,10 @@
   -webkit-text-fill-color: var(--text-primary);
 }
 
+.slide--proof .content-card h2 {
+  font-size: 29px;
+}
+
 .slide--proof .content-card__metric,
 .slide--proof .content-card h2,
 .slide--proof .content-card .ds-tag {
@@ -1010,7 +1023,7 @@
 
 .content-card p {
   color: var(--text-secondary);
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.4;
   margin: 0;
 }
@@ -1140,6 +1153,15 @@
   font-weight: 800;
   letter-spacing: 0.07em;
   text-transform: uppercase;
+}
+
+.slide--flexible-free-spins-overview .tool-use-grid section > span,
+.slide--grand-race-overview .tool-use-grid section > span,
+.slide--turbo-races-overview .tool-use-grid section > span,
+.slide--power-blasts-overview .tool-use-grid section > span,
+.slide--power-chance-overview .tool-use-grid section > span {
+  font-size: 20px;
+  font-weight: 700;
 }
 
 .tool-job > strong {
@@ -1361,6 +1383,10 @@
   object-fit: contain;
 }
 
+.product-media-poster {
+  display: none;
+}
+
 .product-media-placeholder > span {
   font-size: 28px;
   font-weight: 800;
@@ -1377,7 +1403,7 @@
   gap: 18px;
   grid-column: 1;
   grid-row: 1;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
   height: 520px;
 }
 
@@ -1421,7 +1447,7 @@
   line-height: 1.35;
 }
 
-.player-details li > span {
+.player-details li > span:first-child {
   align-items: center;
   background: linear-gradient(90deg, #ffa600, #f4e29b);
   background-clip: text;
@@ -1433,6 +1459,39 @@
   min-width: 1.1em;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.player-details__text {
+  min-width: 0;
+  white-space: pre-line;
+}
+
+.slide--flexible-free-spins-player .player-details h2,
+.slide--grand-race-player .player-details h2,
+.slide--turbo-races-player .player-details h2,
+.slide--power-blasts-player .player-details h2,
+.slide--power-chance-player .player-details h2 {
+  font-size: 21px;
+}
+
+.slide--flexible-free-spins-player .player-details li,
+.slide--grand-race-player .player-details li,
+.slide--turbo-races-player .player-details li,
+.slide--power-blasts-player .player-details li,
+.slide--power-chance-player .player-details li {
+  font-size: 19px;
+}
+
+.slide--flexible-free-spins-player .player-details li > span:first-child,
+.slide--grand-race-player .player-details li > span:first-child,
+.slide--turbo-races-player .player-details li > span:first-child,
+.slide--power-blasts-player .player-details li > span:first-child,
+.slide--power-chance-player .player-details li > span:first-child {
+  font-size: calc(15px + 4pt);
+}
+
+.slide--power-chance-player .player-details {
+  grid-template-rows: minmax(0, 1.93fr) minmax(0, 1fr);
 }
 
 .tool-section-title {
@@ -1468,7 +1527,7 @@
 
 .prize-type-grid span {
   color: var(--text-secondary);
-  font-size: 15px;
+  font-size: 19px;
 }
 
 .prize-type-grid--dense {
@@ -1487,7 +1546,34 @@
 }
 
 .prize-type-grid--dense span {
-  font-size: 12px;
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.slide--grand-race-config .prize-type-grid article,
+.slide--turbo-races-config .prize-type-grid article,
+.slide--power-blasts-config .prize-type-grid article,
+.slide--power-chance-config .prize-type-grid article {
+  container-type: inline-size;
+  text-align: left;
+}
+
+.slide--grand-race-config .prize-type-grid strong,
+.slide--turbo-races-config .prize-type-grid strong,
+.slide--power-blasts-config .prize-type-grid strong,
+.slide--power-chance-config .prize-type-grid strong {
+  font-size: clamp(24px, 8.4cqi, 36px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.slide--grand-race-config .prize-type-grid span,
+.slide--turbo-races-config .prize-type-grid span,
+.slide--power-blasts-config .prize-type-grid span,
+.slide--power-chance-config .prize-type-grid span {
+  font-size: 18px;
+  font-weight: 600;
   line-height: 1.35;
 }
 
@@ -2509,6 +2595,15 @@
 
   .slide-viewport.is-mobile .tool-use-grid section {
     padding: 0;
+  }
+
+  .slide-viewport.is-mobile .slide--flexible-free-spins-overview .tool-use-grid section > span,
+  .slide-viewport.is-mobile .slide--grand-race-overview .tool-use-grid section > span,
+  .slide-viewport.is-mobile .slide--turbo-races-overview .tool-use-grid section > span,
+  .slide-viewport.is-mobile .slide--power-blasts-overview .tool-use-grid section > span,
+  .slide-viewport.is-mobile .slide--power-chance-overview .tool-use-grid section > span {
+    font-size: 13px;
+    font-weight: 800;
   }
 
   .slide-viewport.is-mobile .tool-use-grid p {
